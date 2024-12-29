@@ -1,0 +1,144 @@
+=> ID: Afiliar
+Titulo como empleado quiero afiliar una persona para que use nuestros servicios.
+Reglas de negocio: 
+Criterios de aceptacion: 
+Escenario 1: Cliente afiliado
+	Dado la persona Juan y las condiciones necesarias para el pago
+	Cuando se ingresan los datos de Juan
+	Entonces se registra el cliente Juan, junto los datos de su tarjeta, con el estado "A Cargo" y "Al dia", y se emite un NRO de afiliado unico. (Se calcula la proxima fecha de pago y se registra).
+
+Escenario 2: Pago fallido
+	Dado la persona Juan y las condiciones necesarias para el pago NO SE CUMPLEN
+	Cuando se ingresan los datos de Juan
+	Se muestra "error en el pago"
+
+=> ID: Afiliar familia
+Titulo: Como empleado quiero afiliar a un familiar (pareja o hijo/a) de un afiliado con el estado "Al dia" y "Alta" para que puedan usar nuestros servicios.
+Reglas de negocio: - Si es hijo/a debe ser menor de 18 anhos.
+Escenario 1: Familiar afiliado
+	Dado la persona Jazmin la cual es pareja de un afiliado "Al dia"
+	Cuando se ingresan los datos de Jazmin
+	Entonces se registra a la cliente Jazmin, junto a sus datos, con el estado "Dependiente", "Al dia", "Alta", y se emite un Nro de afiliado unico. (Si estaba dado de baja se cambia su estado a "Alta") (Si fuese hijo/a, se guarda en un calendario la fecha en que cumpliria 18 anhos).
+
+Escenario 2: Hijo/a mayor de edad
+	Dado la persona Juan Jr la cual es hijo de un afiliado "Al dia" y tiene 18 anhos
+	Cuando se ingresan los datos de Juan Jr
+	Entonces se muestra "error hijo/a mayor de edad"
+
+Escenario 3: Afiliado no abonado
+	Dado la persona Jazmin la cual es pareja de un afiliado "No abonado"
+	Cuando se ingresan los datos de Jazmin
+	Entonces se muestra "error en el pago"
+
+=> ID: Liquidar pago diario
+Titulo: Como empleado quiero gestionar los cobros a los afiliados con estado "A Cargo" y "Alta" que deban abonar en el dia.
+Reglas de negocio: None
+Criterios de aceptacion:
+Escenario 1: Pago exitoso
+	Dado el afiliado NRO 1234 y las condiciones necesarias para el pago
+	Cuando se ingresa el NRO de afiliado 1234 junto a los datos de su tarjeta
+	Entonces se mantiene el estado "Al dia" del afiliado y el de sus familiares si los tiene.
+
+Escenario 2: Pago fallido
+	Dado el afiliado NRO 1234 y las condiciones necesarias para el pago NO SE CUMPLEN
+	Cuando se ingresa el NRO de afiliado 1234 junto a los datos de su tarjeta
+	Entonces se cambia el estado del afiliado a "No Abonado" y el de sus familiares si los tiene.
+
+=> ID: Liquidar vencimiento de hijos
+	//Asumo que un afiliado no puede estar casado con un menor de edad...
+	//Asumo que guardo en una especie de calendario, los vencimientos de todos los hijos de los afiliados el cual se chequea dia a dia.
+Titulo: Como empleado quiero gestionar los vencimientos de los afiliados de estado "Dependiente" que hoy cumplen 18 anhos.
+Reglas de negocio: None
+Criterios de aceptacion: 
+Escenario 1: Mayor de edad
+	Dado el afiliado NRO 1234 el cual cumple 18 anhos hoy
+	Cuando se ingresael NRO de afiliado 1234
+	Entonces se cambia el estado del afiliado a "Baja"
+
+=> ID: Pago
+Titulo: Como empleado quiero cobrar la cuota mensual a los afiliados para prestar nuestros servicios.
+Reglas de negocio: - El metodo de pago es solo con tarjeta de credito.
+Criterios de aceptacion:
+Escenario 1: Pago exitoso
+	Dado la tarjeta 1234 la cual es de credito, con cod de seguridad 111 y saldo suficiente
+	Cuando se ingresa el NRO de tarjeta 1234 y el cod de seguridad 111
+	Entonces se procesa el pago como valido.
+
+Escenario 2: Tarjeta de debito
+	Dado la tarjeta 4567 la cual es de debito, con cod de seguridad 111 y saldo suficiente
+	Cuando se ingresa el NRO de tarjeta 4567 y el cod de seguridad 111
+	Entonces se muestra "error tarjeta invalida"
+
+Escenario 3: Error en las credenciales
+	Dado la tarjeta 4567 la cual es de credito, con cod de seguridad 111
+	Cuando se ingresa el NRO de tarjeta 4567 y el cod de seguridad 999
+	Entonces se muestra "error en las credenciales de la tarjeta"
+
+Escenario 4: Saldo insuficiente
+	Dado la tarjeta 4567 la cual es de credito, con cod de seguridad 111 y saldo insuficiente
+	Cuando se ingresa el NRO de tarjeta 4567 y el cod de seguridad 111
+	Entonces se muestra "error en el pago"
+
+=> ID: Ortodoncia
+//Ojo: que presenten una historia clinica, con estado "Alta" y "Al dia" (Reglas de negocio)
+Titulo: Como mutual quiero prestar mi servicio de Ortodoncia a los afiliados que presenten una historia clinica, con estado "Alta" y "Al dia" para poder satisfacer sus necesidades.
+Reglas de negocio: - Solo una por afiliado.
+	- Si es menor de 15 anhos debe estar afiliado desde hace minimo nueve meses.
+Criterios de aceptacion:
+Escenario 1: Servicio prestado
+	Dado el afiliado NRO 1234, el cual no ha solicitado este servicio aun y tiene 20 anhos.
+	Cuando se ingresa el NRO de afiliado 1234 y se selecciona "prestar servicio de Ortodoncia"
+	Entonces se procesa como valida la solicitud, y se registra el servicio prestado con el tipo "Ortodoncia" y el NRO de afiliado 1234 en ella.
+
+
+Escenario 2: Afiliado excede cupo
+	Dado el afiliado NRO 1234, el cual ya ha solicitado este servicio previamente y tiene 20 anhos.
+	Cuando se ingresa el NRO de afiliado 1234 y se selecciona "prestar servicio de Ortodoncia"
+	Entonces se muestra "error el afiliado excede el cupo para el servicio"
+
+Escenario 3: No cumple los requisitos
+	Dado el afiliado NRO 1234, el cual no ha solicitado este servicio aun, tiene 14 anhos y esta afiliado hace 1 mes.
+	Cuando se ingresa el NRO de afiliado 1234 y se selecciona "prestar servicio de Ortodoncia"
+	Entonces se muestra "error afiliado no cumple los requisitos necesarios".
+
+=> ID: Plantillas
+Titulo: Como mutual quiero procesar y devolver las plantillas que el afiliado con estado "Al Dia" y "Alta" me presenta junto a la indicacion del profesional y la factura, para poder satisfacer su solicitud.
+Reglas de negocio: - Solo se puede presentar plantillas 2 veces en el anho calendario por afiliado.
+Criterios de aceptacion:
+Escenario 1: Plantillas procesadas
+	Dado el afiliado NRO 1234 el cual ha pedido plantillas una unica vez este anho calendario y dado las plantillas, factura y ID del profesional que presenta
+	Cuando se ingresa el NRO de afiliado 1234, la factura y el ID del profesional
+	Entonces se procesan las plantillas, se devuelven y se registra el servicio prestado con el tipo "Plantillas", el ID 1234 en ella y la fecha actual.
+
+Escenario 2: Afiliado excede cupo
+	Dado el afiliado NRO 1234 el cual ha pedido plantillas dos veces este anho calendario 
+	Cuando se ingresa el NRO de afiliado 1234
+	Se muestra "error el afiliado excede el cupo para el servicio"
+
+=> ID: Anteojos
+Titulo: Como mutual quiero entregar un par de anteojos al afiliado con estado "Al Dia" y "Alta" para prestar mis servicios.
+Reglas de negocio: - Cupo de un par de anteojos cada 18 meses para cada afiliado.
+Criterios de aceptacion:
+Escenario 1: Anteojos entregados
+	Dado el afiliado 1234 el cual ha solicitado anteojos hace 2 anhos
+	Cuando se ingresa el NRO afiliado 1234
+	Entonces se registra el servicio prestado con el tipo "Anteojos", el ID 1234 en ella y la fecha actual.
+
+Escenario 2: Afiliado excede cupo
+	Dado el afiliado NRO 1234 el cual ha solicitado anteojos hace 6 meses
+	Cuando se ingresa el NRO 1234
+	Entonces se muestra "error el afiliado excede el cupo para el servicio"
+
+=> ID: Consulta Medica
+Titulo: Como mutual quiero prestar consultas medicas a los afiliados con el estado "Alta" y "Al Dia" para prestar mis servicios.
+Reglas de negocio: - Cupo de 2 por mes para cada afiliado.
+Escenario 1: Consulta prestada
+	Dado el afiliado 1234 el cual ha pedido una consulta medica la semana pasada
+	Cuando se ingresa el NRO afiliado 1234
+	Entonces se registra el servicio prestado con el tipo "Consulta Medica", el ID 1234 en ella y la fecha actual.
+
+Escenario 2: Afiliado excede cupo
+	Dado el afiliado NRO 1234 el cual ha solicitado 2 consultas medicas en los ultimos 30 dias
+	Cuando se ingresa el NRO 1234
+	Entonces se muestra "error el afiliado excede el cupo para el servicio"
+

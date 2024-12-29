@@ -1,0 +1,29 @@
+HU:
+	Cuando todos los pagos se deben realizar por tarjeta de credito, la HU que represente el pago deberia contemplar que los datos de la tarjeta pueden ser validos pero de una tarjeta de debito? O no se tiene en cuenta? Porque en el video de HU del drive del grupo de wsp, no distinguen entre tarjeta de credito y debito, aunque el enunciado dice que debe ser una tarjeta de credito.
+	En este mismo ejemplo del software para el instituto, es una mejor solucion agregar la HU listar cursos con cupo? Puedo tomarme esas libertades al resolver un ejercicio? Es decir, crear una HU que pueda simplificar escenarios de otras HU e incluso mejorar la experiencia del usuario? Si asi es, como deberia aclarar que estoy haciendo esto? (De igual manera que lo hacen en el pdf?
+
+////////////////////////
+
+CASOS DE USUARIO:
+
+-Consultar ejercicio 10: Secretaria deberia autenticarse previamente?
+
+-Consultar: Puedo tener 2 pasos alternos para un mismo paso en el curso normal? es decir, dos pasos alternos P5, por ejemplo en el bloqueo de cuenta al tercer intento fallido.
+
+-Consultar: En "autenticar usuario", deberia poner como actor "Usuario registrado" ? No estaria excluyendo a los usuarios no registrados que pueden igualmente disparar el CU "autenticar usuario"?
+
+-Consultar: Ejercicio de parcial CU (Empresa financiera que otorga creditos).
+
+-Consultar: Ejercicio 3: 
+	-> Esta bien planteado el paso alterno 3 donde falla la validacion del TOKEN ?
+	-> Esta bien no tomar como caso alterno que la validacion del CUIT sea negativa, y en vez de eso, retornar el resultado de la 	validacion al CU que disparo el "Validar CUIT" ?
+	-> MIMINUTA no forma parte de mi sistema verdad? Es solo una cita para tener referencia de como deberia funcionar la aprobacion de 	la minuta basada en un sistema que el empleado de rendiciones usaba en otro trabajo, verdad?
+	-> Corroborar si esta bien el CU "Aprobar Minuta".
+
+-Consultar: Ejercicio 1:
+	-> Esta bien solicitar un monto en dolares?
+	-> Esta bien invocar "Pago" con el 20% del monto de la reserva?
+
+-Consultar: Parcial 2023_b
+	-> Deberia poner como precondicion que el Usuario Argentino debe realizar previamente un pasaporte en el CU "Renovar Pasaporte"?
+	-> Consultar el paso alternativo en el CU "Confirmar Turno".

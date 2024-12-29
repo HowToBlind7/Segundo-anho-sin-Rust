@@ -1,0 +1,10 @@
+Ejercicio 1 -> _Esta bien pedir el precio en dolares? O es un dato que esta demas o de trampa?
+		_Esta bien que el codigo de inventario sea autoincremental?
+		_Esta bien invocar el CU ("Pagar con Tarjeta de Credito") con el 20% del monto de la resera?  {"El Sistema ejecuta el CU "Pagar con Tarjeta de Credito" con el 20% del monto de la reserva."}
+
+
+
+
+GENERALES =>
++ En el CU "Pago" se debe enviar el monto a pagar al servidor banco?
+

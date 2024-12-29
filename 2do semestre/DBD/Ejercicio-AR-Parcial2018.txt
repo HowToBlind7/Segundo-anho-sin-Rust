@@ -1,0 +1,24 @@
+σ
+π
+δ
+∩ 
+∪
+-
+⇐
+ρ
+
+1) SMM ⇐ σ CLIENTE.DNI, CLIENTE.nombre, CLIENTE.apellido (CLIENTE |x| σ VIAJE.cpDestino = CIUDAD.CODIGOPOSTAL ( (VIAJE) x σ CODIGOPOSTAL='San Migeul del Monte' (CIUDAD) ))
+
+LF ⇐ σ CLIENTE.DNI, CLIENTE.nombre, CLIENTE.apellido (CLIENTE |x| σ VIAJE.cpDestino = CIUDAD.CODIGOPOSTAL ( (VIAJE) x σ CODIGOPOSTAL='Las Flores' (CIUDAD) ))
+
+σ CLIENTE.DNI, CLIENTE.nombre, CLIENTE.apellido ((SMM) - (LF))
+
+2) Viajo2017 ⇐ σ CLIENTE.DNI, CLIENTE.nombre, CLIENTE.apellido ((CLIENTE) |x| ( σ (VIAJE.FECHA >='01/01/2017' ^ VIAJE.FECHA <='31/12/2017' (VIAJE)) )
+
+ViajoPor50Y120 ⇐ σ CLIENTE.DNI, CLIENTE.nombre, CLIENTE.apellido ((CLIENTE) |x| σ VIAJE.razonSocial = AGENCIA.RAZONSOCIAL ((VIAJE) x σ AGENCIA.direccion='50 y 120' (AGENCIA)) )
+
+σ CLIENTE.DNI, CLIENTE.nombre, CLIENTE.apellido ((Viajo2017) ∪ (ViajoPor50Y120))
+
+5) CiudadViajada2017 ⇐ σ CIUDAD.CODIGOPOSTAL, CIUDAD.nombreCiudad, CIUDAD.anioCreacion (CIUDAD.CODIGOPOSTAL = VIAJE.cpOrigen v CIUDAD.CODIGOPOSTAL = VIAJE.cpDestino) ^ (VIAJE.FECHA >='01/01/2017' ^ VIAJE.FECHA <='31/12/2017') (CIUDAD) x (VIAJE))
+
+CIUDAD.CODIGOPOSTAL, CIUDAD.nombreCiudad, CIUDAD.anioCreacion ((CIUDAD) - (CiudadViajda2017))

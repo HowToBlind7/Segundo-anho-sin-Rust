@@ -1,0 +1,6 @@
+30/9 
+	cuanta pelota hay que darle a los diagramas UML?
+	(Mostrar ejercicio UML)
+
+4/11
+	Van los getters y setters en el diagrama UML?

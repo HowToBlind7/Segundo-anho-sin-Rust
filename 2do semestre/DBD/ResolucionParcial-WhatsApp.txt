@@ -1,0 +1,48 @@
+σ
+π
+δ
+∩ 
+∪
+-
+⇐
+ρ 
+%
+
+1) π Especialista.nombre, Especialista.apellido, Paciente.DNI, Paciente.nombre, Paciente.apellido, Paciente.telefono, Turno.Fecha, Turno.nombre, Turno.observaciones (
+	σ (Turno.Matricula = Especialista.Matricula ^ Turno.DNI = Paciente.DNI ^ (Turno.nombre = ObraSocial.nombre v Turno.nombre ='') (
+		(σ fecha='26/06/2022' (Turno)) x (Especialista) x (Paciente) x (ObraSocial)
+	)
+)
+
+2) π Paciente.DNI, Paciente.nombre, Paciente.apellido, Paciente.domicilio, Paciente.telefono 
+( (σ Paciente.DNI = Turno.DNI (Paciente) x (Turno)) % (σ Matricula (Especialista)) )
+
+-------------------------
+SQL:
+
+2)
+SELECT p.DNI, p.nombre, p.apellido, p.domicilio, p.telefono
+FROM Paciente p
+WHERE NOT EXISTS (
+	SELECT *
+	FROM Especialista e
+	WHERE NOT EXISTS (
+		SELECT *
+		FROM Turno t
+		WHERE (t.DNI = p.DNI) AND (t.matricula = e.matricula)
+	)
+)
+
+5)
+SELECT e.nombre, e.Matricula, COUNT(t.Matricula)
+FROM Especialista e
+LEFT JOIN Turno t ON (e.Matricula = t.Matricula)
+WHERE t.fecha BETWEEN '2022-01-01' and '2022-12-31'
+GROUP BY e.Matricula, e.nombre
+
+6)
+SELECT p.DNI, p.nombre, p.apellido, p.domicilio, p.telefono
+FROM Paciente p
+INNER JOIN Turno t ON (p.DNI = t.DNI)
+GROUP BY p.DNI
+HAVING COUNT(*) >= 5

@@ -1,0 +1,44 @@
+1)
+SELECT l.Titulo, g.Nombre_genero, l.Descripcion
+FROM Libro l
+INNER JOIN Genero g ON (l.Cod_Genero = g.Cod_Genero)
+INNER JOIN Libro-Editorial le ON (l.ISBN = le.ISBN)
+INNER JOIN Editorial e ON (le.Cod_Editorial = e.Cod_editorial)
+WHERE (e.Denominacion = "Nueva Editorial")
+ORDER BY l.titulo
+//**
+
+2)
+SELECT s.apellido, s.nombre
+FROM Socio s
+WHERE s.fehcaIngreso BETWEEN "2022-09-01" and "2022-09-30"
+ORDER BY s.apellido, s.nombre
+
+3)
+SELECT s.nombre, s.apellido, s.fecha_nacimiento, COUNT(*) as cantidad_prestamos
+FROM Socio s
+INNER JOIN Prestamo p ON (s.nro_socio = p.nro_socio)
+GROUP BY s.nro_socio, s.nombre, s.apellido, s.fecha_nacimiento
+HAVING COUNT(*) > 5
+ORDER BY s.apellido
+
+4)
+SELECT s.DNI, s.apellido, s.nombre
+FROM Socio s
+WHERE s.DNI NOT IN (
+	SELECT s2.DNI
+	FROM Socio s2
+	INNER JOIN Prestamo p ON (s2.nro_socio = p.nro_socio)
+	INNER JOIN Libro-Editorial le ON (p.ISBN = le.ISBN)
+	INNER JOIN Editorial e ON (le.cod_editorial = e.cod_editorial)
+	WHERE e.denominacion = "Gran Editorial"
+)
+ORDER BY s.apellido, s.nombre
+//Una poronga en eficiencia, pero piola para buscar soluciones alternas. No tengo en claro
+//Si puedo usar la misma tabla Socio (s) en la subconsulta, asi que voy por lo seguro y uso (s2).
+
+5)
+SELECT COUNT(---)
+FROM Prestamo p
+INNER JOIN Copia c ON (p.ISBN = c.ISBN)
+INNER JOIN

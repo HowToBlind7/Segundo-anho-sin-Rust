@@ -1,0 +1,75 @@
+ID: Dar de alta un mueble
+-> Se carga codigo (unico), tipo de mueble, fecha de creacion, fecha dde ultimo mantenimiento, estado (libre,de baja, alquilado), precio alquiler.
+
+ID: Alquilar un mueble
+
+ID: Reservar (minimo tres muebles, tiene fecha, lugar, catnidad de dias y mobiliario + cantidad) (Se debe abonar un 20% del total del alquiler y se verifica el numero de tarjeta y saldo)
+-> Se emite un numero de reserva unico
+
+ID: Autenticar encargado
+Titulo: Como encargado quiero iniciar sesion para dar de alta uno o mas mueble/s.
+Reglas de negocio: None
+Criterios de aceptacion:
+Escenario 1: Log in exitoso.
+	Dado el usuario juan con password 1234 el cual es valido
+	Cuando se ingresa juan junto a la password 1234 en el log in
+	Entonces el sistema autentica el usuario
+
+Escenario 2: Log in fallido password/usuario incorrecto
+	Dado el usuario juan con password 1234
+	Cuando se ingresa juan junto a a la password 4321 en el log in
+	Entonces se muestra "error no coincide el usuario con el password"
+
+ID: Dar de alta un mueble
+Titulo: Como encargado quiero dar de alta un mueble para que se alquile.
+Reglas de negocio: No pueden haber 2 o mas muebles con el mismo codigo.
+Escenario 1: Alta exitosa.
+	Dado el codigo de mueble 1234 el cual no fue dado de alta previamente "y el encargado juan autenticado" -> demas (implicito en el titulo)
+	Cuando el encargado ingresa el codigo 1234, tipo de mueble, fecha de creacion, fecha de ultimo mantenimiento, estado, precio alquiler
+	Entonces se da de alta el mueble de codigo 1234 junto a todos sus atributos.
+
+Escenario 2: Alta fallida.
+	Dado el codigo de mueble 1234 el cual fue dado de alta previamente 
+	Cuando juan ingresa el codigo 1234, tipo de mueble, fecha de creacion, fecha de ultimo mantenimiento, estado, precio alquiler
+	Entonces: se muestra "error codigo de mueble ya existente"
+
+ID: Reservar muebles.
+Titulo: Como cliente quiero reservar el alquiler de muebles para realizar un evento.
+Reglas de negocio: La cantidad minima de muebles por reservar es de 3.
+Escenario 1: Reserva exitosa.
+	Dado el cliente juan y las condiciones necesarias para el pago se dan, y el estado de los muebles es "libre"
+	Cuando el cliente juan reserva 3 o mas muebles, ingrese fecha, lugar, catnidad de dias
+	Entonces se emite un numero de reserva unico y se cambiara el estado de los muebles a alquilado
+
+Escenario 2: Reserva fallida (muebles insuficientes).
+	Dado el cliente juan y las condiciones necesarias para el pago se dan, y el estado de los muebles es "libre"
+	Cuando el cliente juan reserva 1 o 2 muebles, ingrese fecha, lugar, catnidad de dias
+	Entonces se muestra "error cantidad minima de muebles = 3"
+
+Escenario 3: Reserva fallida (condicion de pago insuficiente).
+	Dado el cliente juan y las condiciones necesarias para el pago NO se dan, y el estado de los muebles es "libre"
+	Cuando el cliente juan reserva 3 o mas muebles, ingrese fecha, lugar, catnidad de dias
+	Entonces se muestra "error en el pago"
+
+Escenario 4: Reserva fallida (mueble/s no disponible/s)
+	Dado el cliente juan y las condiciones necesarias para el pago se dan, y el estado de uno de los muebles es "baja" o "alquilado"
+	Cuando el cliente juan reserva 3 o mas muebles, ingrese fecha, lugar, catnidad de dias
+	Entonces se muestra "error mueble/s no disponible/s"
+
+ID: Pago
+Titulo: Como cliente quiero abonar el pago para reservar muebles.
+Reglas de negocio: None
+Escenario 1: Pago exitoso.
+	Dado el numero de tarjeta 1234 (el cual es valido) y el saldo es suficiente
+	Cuando el cliente ingresa el nro de tarjeta 1234
+	Entonces se efectua el pago y se emite un numero de reserva unico
+
+Escenario 2: Pago fallido (nro de tarjeta invalido)
+	Dado el numero de tarjeta 4321 (el cual no es valido)
+	Cuandl el cliente ingresa el nro de tarjeta 4321
+	Entonces se muestra "error nro de tarjeta no valido)
+
+Escenario 3: Pago fallido (saldo insuficiente)
+	Dado el numero  de tarjeta 1235 (el cual es valido) y no tiene saldo suficiente
+	Cuando el cliente ingresa el nro de tarjeta 4321
+	Se muestra "error saldo insuficiente"

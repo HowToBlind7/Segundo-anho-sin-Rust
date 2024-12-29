@@ -1,0 +1,49 @@
+=> ID: Registro
+Titulo: Como persona interesada quiero registrarme en el sitio para reservar canchas.
+Reglas de negocio: - La persona debe ser mayor de edad.
+- El mail sera el nombre de usuario.
+Criterios de aceptacion:
+_Escenario 1: Registro exitoso
+	Dado la persona juan que tiene 24 annhos y tiene el mail juan@gmail.com el cual no esta registrado
+	Cuando se ingresa el mail juan@gmail.com, nombre, apellido, 24 anhos y domicilio
+	Entonces se guardara el registro y se emitira una contrasenha unica al correo juan@gmail.com
+
+Escenario 2: Registro fallido (menor de edad)
+...
+
+Escenario 3: Registro fallido (mail registrado)
+...
+
+=> ID: Log In
+Titulo: Como usuario registrado quiero iniciar sesion para reservar canchas.
+Reglas de negocio: - Si se acumulan 3 intentos fallidos seguidos para un mismo mail, se debe bloquear la cuenta.
+Criterios de aceptacion:
+_Escenario 1: Log In Exitoso
+	Dado el mail juan@gmail.com el cual le corresponde la password 1234 y lleva un intento fallido
+	Cuando se ingresa juan@gmail.com en usuario y 1234 en password
+	Entonces se resetea el acumulador de intentos fallidos para juan@gmail.com, se le muestra la pagina web al usuario y se le otorga acceso a su cuenta.
+
+_Escenario 2: Log In Fallido (usuario o contrasenha incorrectos)
+	Dado el mail juan@gmail.com el cual le corresponde la password 1234 y lleva 2 intentos fallidos
+	Cuando se ingresa juan@gmail.com en usuario y 9999 en password
+	Entonces se muestra "error usuario o contrasenha incorrectos" y se bloquea la cuenta registrada con el mail juan@gmail.com .
+
+=> ID: Reservar Cancha
+Titulo: Como usuario autenticado quiero reserevar una cancha para jugar.
+Reglas de negocio: - Reservas con menos de 2 dias de antelacion no permitidas.
+- Se debe manejar el caso de una reserva exitosa y una fallida por estar previamente ocupada la cancha.
+Criterios de aceptacion:
+_Escenario 1: Reserva creada
+	Dado la cancha 1 la cual esta desocupada //Y quiere reservar hoy 24/4 para el dia 2/5
+	Cuando se ingresa reservar cancha 1, con una semana de antelacion
+	Entonces se registra la reserva de la cancha 1 junto al mail del usuario, se cambia el estado de cancha 1 a "Reservada" y se muestra "Su turno ha sido registrado con exito"
+
+_Escenario 2: Reserva fallida (cancha ocupada)
+	Dado la cancha 1 la cual esta OCUPADA
+	Cuando se ingresa reservar cancha 1, con una semana de antelacion
+	Entonces se muestra "Cancha ocupada, por favor seleccione otro dia y horario" y el sistema mostrara el catalogo de seleccion de turnos nuevamente al usuario.
+
+_Escenario 3: Reserva fallida (fecha prohibida)
+	Dado la cancha 1 la cual esta DESOCUPADA
+	Cuando se ingresa reservar cancha 1, con un dia de antelacion
+	Entonces se muestra "Debe reservar minimo con 2 dias de antelacion, por favor seleccione otro dia y horario" y el sistema dejara los datos ingresados en el intento de reserva, para que el usuario ingrese otra fecha.

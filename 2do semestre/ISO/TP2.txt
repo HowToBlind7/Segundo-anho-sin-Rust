@@ -1,0 +1,88 @@
+1) a) nano: Es un editor de texto sencillo y fácil de usar para principiantes. Proporciona una interfaz intuitiva con atajos de teclado listados en la parte inferior de la pantalla.
+
+vim: Es un editor de texto muy poderoso y flexible, con una curva de aprendizaje más pronunciada. Ofrece una amplia gama de características para la edición eficiente de texto.
+
+emacs: Es otro editor de texto altamente configurable y extensible. Aunque tiene una curva de aprendizaje también, ofrece muchas funcionalidades y puede ser personalizado extensivamente.
+
+b) Diferencias entre Editores de Texto y Comandos como cat, more, less:
+
+Editores de texto: Permiten crear, modificar y guardar archivos, con funcionalidades para edición, búsqueda y formateo. Proporcionan una interfaz interactiva para la edición.	
+cat: Muestra el contenido de un archivo en la terminal sin permitir edición.
+more: Visualiza el contenido de un archivo página por página, sin opciones de edición.
+less: Similar a more, pero permite navegación hacia adelante y hacia atrás y búsqueda dentro del archivo, sin editarlo.
+Posee 3 modos de ejecucion:
+• Modo Insert (Ins o i)
+• Modo Visual (v)
+• Modo de Ordenes o Normal (Esc)
+
+c) w: escribir cambios
+• q o q!: salir del editor
+• dd: cortar
+• y: copiar al portapapeles
+• p: pegar desde el portapapeles
+• u: deshacer
+• /frase: busca “frase” dentro del archivo
+
+2) a) Paso para el inicio de un sistema GNU/Linux
+1 Se empieza a ejecutar el codigo del BIOS
+2 El BIOS ejecuta el POST
+3 El BIOS lee el sector de arranque (MBR)
+4 Se carga el gestor de arranque (MBC)
+5 El bootloader carga el kernel y el initrd
+6 Se monta el initrd como sistema de archivos ra´ız y se
+inicializan componentes esenciales (ej.: scheduler)
+7 El Kernel ejecuta el proceso init y se desmonta el initrd
+8 Se lee el /etc/inittab
+9 Se ejecutan los scripts apuntados por el runlevel 1
+10 El final del runlevel 1 le indica que vaya al runlevel por defecto
+11 Se ejecutan los scripts apuntados por el runlevel por defecto
+12 El sistema est´a listo para usarse
+
+b) Proceso INIT: Es el primer proceso en ejecutarse al arrancar la PC y lo ejecuta/inicia el Kernel. Funciones: Cargar todos los subprocesos necesarios para el correcto funcionamiento del SO, ademas,  supervisa y controla los servicios.
+
+c) RunLevels:
+	• Es el modo en que arranca Linux (3 en Redhat, 2 en Debian)
+	• El proceso de arranque lo dividimos en niveles
+	• Cada uno es responsable de levantar (iniciar) o bajar (parar) una serie de servicios
+Existen 7, y permiten iniciar un conjunto de procesos al arranque o apagado del sistema.
+
+d) Segun el estandar (SysVinit):
+• 0: halt (parada) -> El sistema se apaga. No deben estar activos los servicios del sistema.
+• 1: single user mode (monousuario) -> El sistema arranca en modo de usuario único, destinado principalmente a tareas de mantenimiento y administración del sistema. Solo el administrador del sistema tiene acceso a una terminal y se desactivan la mayoría de los servicios.
+• 2: multiuser, without NFS (modo multiusuario sin soporte de red) -> El sistema opera en modo multiusuario sin soporte para servicios de red. Se cargan todos los servicios necesarios para el funcionamiento de usuarios locales, pero no se activa la red.
+• 3: full multiuser mode console (modo multiusuario completo por consola) -> El sistema opera en modo multiusuario con soporte completo para servicios de red. Se cargan todos los servicios necesarios para usuarios locales y de red, incluyendo servicios de red como SSH.
+• 4: modo de personalizacion (no se utiliza) -> Este nivel es reservado para la personalización del usuario y no se utiliza por defecto. Los administradores pueden configurar este nivel para cumplir con requisitos específicos.
+• 5: X11 (modo multiusuario completo con login grafico basado en X) -> Similar al nivel 3, pero con soporte para un entorno gráfico (por ejemplo, una interfaz gráfica de usuario como GNOME o KDE). 
+• 6: reboot -> El sistema se reinicia.
+Se encuentran definidos en el archivo inittab: "/etc/inittab" (utilizado en el sistema de inicializacion SysVinit)
+id:nivelesEjecucion:accion:proceso
+No todas las distribuciones usan este estandar, sino que las mas modernas usan Systemd.
+
+e) Almacena la informacion del nivel de ejecucion predeterminado.
+Estructura de la informacion -> id:nivelesEjecucion:accion:proceso
+• Id: identifica la entrada en inittab (1 a 4 caracteres)
+• NivelesEjecucion: el/los niveles de ejecucion en los que se realiza la accion
+• Accion: describe la accion a realizar
+• wait: inicia cuando entra al runlevel e init espera a que termine
+• initdefault
+• ctrlaltdel: se ejecutara cuando init reciba la se˜nal SIGINT
+• off, respawn, once, sysinit, boot, bootwait, powerwait, etc.
+• Proceso: el proceso exacto que ser´a ejecutado
+
+3) b) Unit: Unidad de trabajo y tienen varios tipos:
+	• Service: controla un servicio particular (.service)
+	• Socket: encapsula IPC, un socket del sistema o file system FIFO (.socket) → sockect-based activation
+	• Target: agrupa units o establece puntos de sincronizaci´on durante el booteo (.target) → dependencia de unidades
+	• Snapshot: almacena el estado de un conjunto de unidades que puede ser restablecido m´as tarde (.snapshot)
+	• etc.
+Las units pueden tener dos estados → active o inactive
+
+c) El comando systemctl en systemd se utiliza para gestionar servicios y el estado del sistema en Linux. Aquí están sus principales funciones:
+	- Gestionar Servicios
+	- Gestionar el Sistema
+	- Gestionar Unidades y Targets
+	- Ver Información y Registros
+
+d) Target: Las unidades de tipo target en systemd permiten gestionar y agrupar servicios y recursos del sistema en estados o grupos lógicos, facilitando la administración del arranque y el funcionamiento del sistema.
+
+e) pstree: Comando Que muestra los procesos en ejecución en forma de árbol (padre e hijo) siendo systemd el padre de todos los procesos.

@@ -1,0 +1,11 @@
+Teoria:
+	Cuando un el short term scheduler selecciona un proceso para darle CPU, debe realizarse un cambio de contexto en modo kernel. Ahora, cuando ocurre una apropiacion de la CPU, Tambien se da un cambio de coontexto pero NO en modo kernel. Por que? Existen 2 cambios de contexto? Uno en modo usuario y otro en modo kernel? (Revisar diagrama de transiciones de procesos en UNIX).
+
+
+DUDAS PARCIAL
+	-> Entender como funciona el numero de version de GNU/Linux.
+	-> La BIOS carga el MBR entero en memoria o solo el MBC?
+	-> Diferencia entre monolitico y microkernel.
+	-> Pasos ocurridos durante el arranque del PC.
+	-> Diferencias reales entre un particionador destructivo y no destructivo.
+	-> Diferencias de arranque en systemD

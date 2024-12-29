@@ -1,0 +1,11 @@
+Ejercicio 3 -> Esta bien la fila para pagar?
+Ejercicio 4 -> Esta bien? 2 cobradores disponibles.
+Ejercicio 5 -> Deberia tener fila de firmar voto?
+Ejercicio 11 -> Chequear
+Ejercicio 12 -> Esta bien finalizado? (Sector 1 y sector 2)
+Ejercicio 13 -> Chequear
+Ejercicio 14 -> Chequear
+Ejercicio 15 -> CHEQUEAR:
+	_Propuesta 2: Es correcta (CHEQUEAR)
+	_Propuesta 1: Es incorrecta porque los 8 arcos de salida deberian dirigirse a la transicion "Ingresa a cabina #" debido a que el ejercicio solicita detener la atencion en 		cabina (Cuando se completan los 8 lugares). Y en esta propuesta, se detiene em la salida de esa atencion. Ademas, falta un arco de salida en la transicion "Termina entrega de 	informes #1", se genera un bloqueo.
+	_Propuesta 3: Incorrecta, el Sitio "Esperando vehiculo en el puesto #" deberia tener 2 tokens en su estado inicial, en vez de uno. Esto genera un bloqueo. Ademas, aunque el 		sistema funcione con 2 arcos en "Evaluando puesto #" y en "Entregando informe #", conceptualmente esta mal, ya que los tokens representarian en este caso, al auto que esta en 		el puesto # (Es unico y deberia representarlo un unico token).

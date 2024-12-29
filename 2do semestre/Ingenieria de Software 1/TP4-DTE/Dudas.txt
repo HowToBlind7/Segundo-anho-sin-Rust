@@ -1,0 +1,11 @@
+Ejercicio 1: En evento "Se valida la moneda y el monto " esta bien hecho que en la accion se sume el valor de la moneda al monto aunque se use como condicion que sea menor a precio del producto? Puedo tener estas libertades atemporales para disenhar el DTE o esta mal?
+
+Ejercicio 6: Esta bien planteado el evento y su condicion?
+Ejercicio 6: Deberia modelar que la energia no sea mayor a 100% ?
+
+Dado el siguiente requerimiento:
+	Se presiona B3 modifico el digito a modificar
+	Hora, minuto, segundo, día, mes 
+Dado el siguiente evento:
+	Se presiona  B3 / Pasar al siguiente digito
+Es correcto? Deberia modelarse que solo hay 5 digitos? Que pasa si voy al siguiente digito siendo el 5?

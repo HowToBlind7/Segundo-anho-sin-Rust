@@ -1,0 +1,9 @@
+Ejercicio 6: Consultar en el tiempo 2 del tercer diagrama de gantt, si deberia ejecutarse p1 o p2? Se desempata por PID o eso sucede solo cuando llegan los 2 procesos al mismo tiempo? En este caso el p1 volveria a la cola de ready pero no "llega" sino que "vuelve", se hace desempate igual o se encola el proceso 2 y luego el 1, el cual "vuelve" y no "llega"? En el simulador los chicos mostraron como no desempata, sino que encola primero a p2... esto se contradice con la explicacion practica de desempate, por que no aplica?
+
+=> Hay que saberse la formula de EAT (Efective Access Time)
+
+Ejercicio 22: 
+=> FIFO Segunda Chance: Caso hipotetico de paginas (m = 3, asignacion dinamica): 
+	paginas = {1*, 2*, 3} // Cola -> (1*, 2*, 3)
+	// Llega pagina 5, ocurre un FP
+	paginas = {1, 2, 5} // Cola -> (5, 1, 2) ??????????? <= CONSULTAR

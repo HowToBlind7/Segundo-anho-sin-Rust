@@ -1,0 +1,84 @@
+Actores:
+	- Usuario
+	- Conserje
+HU:
+	- Reservar Hospedaje.
+	- Check in.
+	- Check out.
+
+
+
+
+
+
+
+==> ID: Reservar Hospedaje
+Titulo: Como usuario quiero realizar una reserva para poder hospedarme.
+Reglas de negocio:
+	- La fecha de ingreso debe estar dentro de los 90 dias a partir de la fecha actual y la de egreso.
+	- El hospedaje no puede durar mas de 15 dias.
+
+Criterios de aceptacion:
+-Escenario 1: Reserva exitosa
+	Dado la fecha actual 1/1/2025 y el hotel "Alpha" con habitacion/es disponible/s
+	Cuando el usuario ingresa fecha de ingreso 30/1/2025, fecha de egreso 5/2/2025 y selecciona el hotel "Alpha" y 2 hospedantes
+	Entonces el sistema verifica las fechas de ingreso/egreso, realiza la reserva y genera un codigo unico de reserva, asigna una habitacion y la misma es registrada como ocupada y envia el codigo de reserva al email del usuario junto al link que continua el pago del mismo.
+
+-Escenario 2: Reserva fallida por fecha de ingreso fuera de rango
+	Dado la fecha actual 1/1/2025 y el hotel "Alpha" con habitacion/es disponible/s
+	Cuando el usuario ingresa fecha de ingreso 1/6/2025, fecha de egreso 10/6/2025 y selecciona el hotel "Alpha" y 2 hospedantes
+	Entonces el sistema verifica las fechas de ingreso/egreso y se informa "error: Fecha de ingreso debe ser dentro de los proximos 90 dias"
+
+-Escenario 3: Reserva fallida por egreso fuera de rango
+	Dado la fecha actual 1/1/2025 y el hotel "Alpha" con habitacion/es disponible/s
+	Cuando el usuario ingresa fecha de ingreso 2/1/2025, fecha de egreso 19/1/2025 y selecciona el hotel "Alpha" y 2 hospedantes
+	Entonces el sistema verifica las fechas de ingreso/egreso y se informa "error: maxima duracion de hospedaje permitida = 15 dias"
+
+-Escenario 4: Reserva fallida por falta de habitaciones
+	Dado la fecha actual 1/1/2025 y el hotel "Alpha" el cual NO tiene habitaciones disponible/s
+	Cuando el usuario ingresa fecha de ingreso 1/1/2025, fecha de egreso 10/1/2025 y selecciona el hotel "Alpha" y 2 hospedantes
+	Entonces el sistema informa "error: No se encuentran habitaciones disponibles para la fecha 1/1/2025"
+
+==> ID: Check in
+Titulo: Como usuario quiero realizar el check in de mi reserva para poder aprovecharla.
+Reglas de negocio: 
+	- El check in debe realizarse entre las 10:00 AM y las 23:59 PM.
+	- La fecha actual debe coincidir con la fecha de ingreso de la reserva.
+
+Criterios de aceptacion:
+-Escenario 1: Chequeo exitoso
+	Dado la fecha actual 1/1/2025, el codigo de reserva 123 el cual es valido, con fecha de ingreso 1/1/2025
+	Cuando el usuario ingresa el codigo 123
+	Entonces el sistema informa la habitacion asignada, notofica a algun conserje del hotel y notifica a los botontes del hotel.
+
+-Escenario 2: Chequeo fallido por error en la fecha de ingreso
+	Dado la fecha actual 31/12/2024, el codigo de reserva 123 el cual es valido, con fecha de ingreso 1/1/2025
+	Cuando el usuario ingresa el codigo 123
+	Entonces el sistema informa "error: fecha de ingreso no coincide con la actual"
+
+-Escenario 3: Chequeo fallido por error en el codigo de reserva
+	Dado la fecha actual 1/1/2025, el codigo de reserva 123 el cual es valido, con fecha de ingreso 1/1/2025
+	Cuando el usuario ingresa el codigo 99999
+	Entonces el sistema informa "error: Codigo de reserva inexistente"
+
+==> ID: Check out
+Titulo: Como conserje quiero realizar el chek out de una habitacion para finalizar su hospedaje
+Reglas de negocio:
+	- La habitacion del hospedante no puede adeudar gastos
+	- La habitacion debe tener un hospedaje activo
+Criterios de aceptacion:
+-Escenario 1: Check out exitoso
+	Dado el nro de habitacion 99 el cual no adeuda gastos y se encuentra ocupada
+	Cuando el conserje ingresa "check out" y nro de habitacion "99"
+	Entonces el sistema registra la habitacion como liberada y notifica a las mucamas
+
+-Escenario 2: Check out fallido por deuda impaga
+	Dado el nro de habitacion 99 el cual ADEUDA gastos y se encuentra ocupada
+	Cuando el conserje ingresa "check out" y nro de habitacion "99"
+	Entonces el sistema informa "error: deben abonarse los gastos antes de realizar el check out de la habitacion 99"
+
+-Escenario 3: Check out fallido por habitacion desocupada
+	Dado el nro de habitacion 99 la cual se encuentra DESOCUPADA
+	Cuando el conserje ingresa "check out" y nro de habitacion "99"
+	Entonces el sistema informa "error: la habitacion 99 se encuentra libre"
+

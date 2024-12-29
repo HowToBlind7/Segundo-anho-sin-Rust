@@ -1,0 +1,108 @@
+Actores:
+	- Operario experto
+	- Usuario supervisor
+
+HU:
+	- Autenticar Usuario
+	- Cerrar Sesion
+	+ Cargar Imagen (EPICA):
+		- Listar Imagenes
+		- Seleccionar Imagen
+	+ Recortar Imagen (EPICA):
+		- Seleccionar area
+		- Guardar en disco
+	- Listar Imagenes por intervalo de tiempo
+
+==> ID: Autenticar Usuario
+Titulo: Como Operario registrado o Usuario supervisor quiero iniciar session para subir y recortar imagenes.
+Reglas de negocio: ---
+
+Criterios de aceptacion:
+-Escenario 1: Autenticacion exitosa
+	Dado el Operario con nombre de usuario juan y pass 123 y dadas las condiciones para una conexion exitosa con el servidor
+	Cuando el Operario ingresa usuario "juan" y password "123" e "Autenticar Usuario"
+	Entonces el sistema se conecta con el servidor, envia el usuario "juan", la password "123", recibe el token de autenticacion del servidor y se habilitan las opciones de Usuario autenticado.
+
+-Escenario 2: Autenticacion fallida por error en las credenciales
+	Dado el Operario con nombre de usuario juan y pass 123 y dadas las condiciones para una conexion exitosa con el servidor
+	Cuando el Operario ingresa usuario "juan" y password "999" e "Autenticar Usuario"
+	Entonces el sistema se conecta con el servidor, envia el usuario "juan", la password "999", el sistema verifica la ausencia del token y se informa "error en las credenciales".
+
+-Escenario 3: Autenticacion por falla en la conexion
+	Dado el Operario con nombre de usuario juan y pass 123 y, que las condiciones para una conexion exitosa con el servidor NO SE CUMPLEN
+	Cuando el Operario ingresa usuario "juan" y password "123" e "Autenticar Usuario"
+	Entonces el sistema informa "error: No se pudo conectar con el servidor"
+
+==> ID: Cerrar session
+Titulo: Como Usuario supervisor u Operario quiero cerrar sesion para irme a dormir.
+Reglas de negocio: ---
+
+Criterios de aceptacion:
+-Escenario 1: Cierre exitoso
+	Dado el Operario juan el cual tiene una sesion activa
+	Cuando el Operario ingresa "Cerrar Sesion"
+	Entonces se deshabilitan las opciones de Usuario para el Operario y se muestra la pantalla de inicio por defecto del sistema.
+
+==> ID: Listar Imagenes
+Titulo: Como Supervisor/Operario quiero listar imagenes para seleccionar una.
+
+Reglas de negocio:
+	- Las imagenes listadas deben tener una resolucion de 2 Megapixeles o mas.
+
+Criterios de aceptacion:
+-Escenario 1: Listado exitoso
+	Dado un conjunto de imagenes con suficiente resolucion en el sistema
+	Cuando el usuario ingresa "Listar Imagenes"
+	Entonces el sistema muestra la lista de imagenes con resolucion suficiente disponibles en el dispositivo del usuario junto a la opcion de "seleccionar" junto a cada una.
+
+-Escenario 2: Listado fallido por ausencia de imagenes
+	Dado que no hay imagenes con resolucion de 2 Mega pixeles o mas en el sistema
+	Cuando el usuario ingresa "Listar Imagenes"
+	Entonces el sistema muestra "error: No se encuentras imagenes que cumplan la resolucion en el sistema"
+
+==> ID: Seleccionar imagen
+Titulo: Como Supervisor/Operario quiero seleccionar una imagen listada para cargarla.
+Reglas de negocio: ---
+
+Criterios de aceptacion:
+-Escenario 1: Seleccion exitosa
+	
+																												Dado un listado de imagenes del sistema
+	Cuando el Usuario ingresa "seleccionar" en una imagen
+	Entonces el sistema muestra la opcion visualizar la imagen seleccionada a color o en escala de grises.
+
+==> ID: Seleccionar Area
+Titulo: Como Supervisor/Operario quiero seleccionar un area de imagen para recortarla.
+Reglas de negocio:
+	//- Debe haber cargada una imagen previamente. //  <- No va verdad?!
+	- Cuatro es la cantidad de selecciones maximo permitidas.
+	- Las areas no pueden superponerse.
+
+Criterios de aceptacion:
+-Escenario 1: Seleccion exitosa
+	Dado una imagen cargada la cual se han marcado 2 areas sin superponerse
+	Cuando el usuario recorta una nueva area no superpuesta
+	Entonces el Sistema registra el area seleccionada, muestra la opcion de "Seguir recortando" o "Finalizar recorte"
+
+-Escenario 2: Seleccion exitosa final
+	Dado una imagen cargada la cual se han marcado 3 areas sin superponerse
+	Cuando el usuario selecciona una nueva area no superpuesta
+	Entonces el Sistema registra el area y finaliza la seleccion.
+
+-Escenario 3: Seleccion fallida por superposicion de areas
+	Dado una imagen cargada la cual se han marcado 2 areas sin superponerse
+	Cuando el usuario recorta una nueva area superpuesta con otra
+	Entonces el Sistema informa "Seleccion de area invalida, intente nuevamente"
+
+==> ID: Guardar en disco
+Titulo: Como Supervisor/Operario quiero guardar en disco las areas seleccionadas para poder persistirlas.
+Reglas de negocio: ---
+
+Criterios de aceptacion:
+-Escenario 1: Guardado exitoso
+	Dado una imagen cargada con 3 areas seleccionadas
+	Cuando el Usuario ingresa "Guardar recortes"
+	Entonces el Sistema almacena en disco los resultados e informa "Guardado exitoso"
+
+/////////DUDAS////////
+Estan bien planteadas las Epicas?

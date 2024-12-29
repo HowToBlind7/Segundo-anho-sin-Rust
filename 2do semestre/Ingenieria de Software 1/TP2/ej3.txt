@@ -1,0 +1,59 @@
+ID: Crear Minuta
+Titulo: Como empleado de mesa de entradas quiero confeccionar una minuta para que sea analizada por el empleado de rendiciones.
+Reglas de negocio: - El monto no puede superar los $25.000.
+	- Duracion maxima 6 meses.
+Criterios de aceptacion:
+Escenario 1: Minuta creada
+	Dado el CUIT 1234 el cual es valido, el monto no supera los $25.000 y la duracion no supera los 6 meses //Puedo no tener contexto????????? //////////////
+	Cuando se ingresa el CUIT 1234, nombre, tipo contrato, fecha comienzo, duracion, monto
+	Entonces se crea un NRO de minuta (unico) y se guarda la minuta junto a los datos ingresados, el NRO de minuta y el estado "Aprobada" es "FALSE".
+
+Escenario 2: Minuta no valida (monto excedido)
+	Dado el CUIT 1234 el cual es valido, el monto SI supera los $25.000 y la duracion no supera los 6 meses
+	Cuando se ingresa el CUIT 1234, nombre, tipo contrato, fecha comienzo, duracion, monto
+	Entonces se muestra "error monto excedido".
+
+Escenario 3: Minuta no valida (duracion excedida)
+	Dado el CUIT 1234 el cual es valido, el monto no supera los $25.000 y la duracion SI supera los 6 meses
+	Cuando se ingresa el CUIT 1234, nombre, tipo contrato, fecha comienzo, duracion, monto
+	Entonces se muestra "error fecha excedida".
+
+ID: Aprobar Minuta
+Titulo: Como empleado de rendiciones quiero validar las minutas correspondientes para que puedan ser listadas.
+Reglas de negocio: - No pueden haber mas de 3 minutas vigentes (aprobadas) registradas con el mismo CUIT.
+	- Si el CUIT se encuentra inhabilitado por la AFIP no se puede aprobar la minuta.
+Escenario 1: Minuta aprobada
+	Dado la minuta con NRO de minuta 55 y, con el CUIT 1234 (el cual existe) el cual no tiene 3 contratos aprobados/vigentes y el CUIT esta habilitado por la AFIP
+	Cuando se ingresa el NRO de minuta 55
+	Entonces el estado de la minuta es aprobada ("Aprobada = true").
+
+Escenario 2: Minuta invalida (cupo maximo por CUIT)
+	Dado la minuta con NRO de minuta 55 y, con el CUIT 1234 (el cual existe) el cual SI tiene 3 o mas contratos aprobados/vigentes
+	Cuando se ingresa el NRO de minuta 55
+	Entonces se muestra "error CUIT excedio el limite maximo de minutas vigentes".
+	
+Escenario 3: Minuta invalida (CUIT invalido)
+	Dado la minuta con NRO de minuta 55 y, con el CUIT 1234 (el cual existe) el cual SI tiene 3 o mas contratos aprobados/vigentes
+	Cuando se ingresa el NRO de minuta 55
+	Entonces se muestra "error CUIT inhabilitado por la AFIP".
+
+ID: Validar CUIT
+Titulo: Como empleado de rendiciones quiero verificar la validez de un CUIT para aprobar una minuta.
+Reglas de negocio: None
+Escenario 1: CUIT habilitado
+	Dado el CUIT 1234 (el cual existe) y se encuentra habilitado por la AFIP
+	Cuando se ingresa el CUIT 1234
+	El sistema procesa como valido el CUIT
+
+Escenario 2: CUIT inhabilitado
+	Dado el CUIT 1234 (el cual existe) y NO se encuentra habilitado por la AFIP
+	Cuando se ingresa el CUIT 1234
+	El sistema procesa como INVALIDO el CUIT
+
+Escenario 3: Imprimir listado
+Titulo: Como empleado de rendiciones quiero imprimir un listado del personal contratado para presentarselo al jefe.
+Reglas de negocio: None
+Escenario 1: Listado impreso
+	Dado el listado de minutas confeccionadas
+	Cuando se ingrese una peticion de impresion
+	Entonces se enviara una peticion de impresion a la impresora por defecto del listado de minutas APROBADAS

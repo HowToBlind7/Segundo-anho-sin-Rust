@@ -1,0 +1,4 @@
+Cuando un proceso termina, y otro sigue pidiendo paginas. Debo modelar en el diagrama de Gantt que ese proceso termino? (Dejando vacio a los frames correspondientes a ese programa finalizado).
+
+Cuando hay varios procesos con sus respectivas paginas. En segunda chance, en el reemplazo local cuando hay que alocar una pagina, el bit de R se pone en 0 para todas las paginas presentes o solo para el conjunto de paginas del proceso que causo la FP? Para el reemplazo global seria el primer caso verdad? 
+Podria decirse que en el reemplazo global modelamos todas las paginas en la misma cola y en el r. local modelamos una cola diferente para cada proceso?

@@ -1,0 +1,5 @@
+Tipo | ID | FS | PMO
+primaria /dev/hda1 ext3 /
+primaria /dev/hda2 ext3 /boot
+primaria /dev/hda3 ext3 /home
+extendida /dev/hda4 swapp

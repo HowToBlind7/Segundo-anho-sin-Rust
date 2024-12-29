@@ -1,0 +1,325 @@
+Objetivo
+El objetivo de esta práctica es que el alumno comprenda los aspectos base acerca de la planificación de procesos en un Sistema Operativo (tipos de planificadores, algoritmos y sus variantes,
+etc.). Además, para la autocorrección de los ejercicios, es deseable la utilización del simulador
+que se encuentra en cátedras virtuales1
+.
+1. Responda en forma sintética sobre los siguientes conceptos:
+//*
+(a) Programa y Proceso.
+PROGRAMA:
+	• Es estatico
+	• No tiene program counter
+	• Existe desde que se edita hasta que se borra
+PROCESO:
+	• Es dinamico
+	• Tiene program counter
+	• Su ciclo de vida comprende desde que se lo ejecuta hasta que termina.
+//*
+(b) Defina Tiempo de retorno (TR) y Tiempo de espera (TE) para un Job.
+	• Retorno: tiempo que transcurre entre que el proceso llega al sistema hasta que completa su ejecuci´on
+	• Espera: tiempo que el proceso se encuentra en el sistema esperando, es decir el tiempo que pasa sin ejecutarse (TR - Tcpu)
+
+//*
+(c) Defina Tiempo Promedio de Retorno (TPR) y Tiempo promedio de espera (TPE)
+para un lote de JOBS.
+	• Promedios: tiempos promedio de los anteriores
+//*
+(d) ¿Qué es el Quantum?
+	Quantum (Q): medida que determina cuanto tiempo podra usar el procesador cada proceso:
+	• Pequenio: overhead de context switch
+	• Grande: Adquiere comportamiento FIFO.
+//*
+(e) ¿Qué significa que un algoritmo de scheduling sea apropiativo o no apropiativo (Preemptive o Non-Preemptive)?
+	No Apropiativo: Los Procesos se ejecutan secuencialmente y no son interrumpidos, abandonan la CPU por voluntad propia o por 	finalizacion.
+	Apropiativo: El Kernel puede apropiarse de la CPU para otorgarle el ese recurso a otro proceso.
+//*
+(f) ¿Qué tareas realizan?:
+i. Short Term Scheduler
+	Gestiona los procesos que pasan de READY a RUNNING, utiliza el Dispatcher.
+ii. Long Term Scheduler
+	Gestiona los procesos que pasan de NEW a READY, utiliza el Loader.
+iii. Medium Term Scheduler
+	Controla el nivel de multiprogramacion, gestionando el Swapping de procesos entre mmria principal y secundaria.
+//*
+(g) ¿Qué tareas realiza el Dispatcher?
+	Guarda el contexto del proceso que sale del CPU y carga el del proceso entrante.
+////****
+2. Procesos:
+(a) Investigue y detalle para que sirve cada uno de los siguientes comandos. (Puede que algún comando no venga por defecto en su distribución por lo que deberá instalarlo):
+i. top
+	Se utiliza para mostrar información sobre los procesos en ejecución, así como el uso de recursos del sistema, como CPU y memoria. Se muestra en tiempo real.
+	-d <segundos>: Establece el intervalo de tiempo entre actualizaciones, en segundos. Por ejemplo, top -d 2 actualiza cada 2 segundos.
+	-u <usuario>: Filtra la salida para mostrar solo los procesos de un usuario específico.
+ii. htop
+	Similar a top, pero mas detallada y amigable con el usuario, posee una interfaz grafica interactiva.
+	-d <segundos>: Establece el intervalo de tiempo entre actualizaciones, en segundos. Por ejemplo, htop -d 2 actualiza cada 2 segundos.
+	-p <pid>: Muestra solo el proceso con el ID de proceso especificado. Por ejemplo, htop -p 1234 mostrará solo el proceso con PID 1234.
+	-u <usuario>: Muestra solo los procesos pertenecientes a un usuario específico.
+iii. ps
+	Muestra información sobre los procesos en ejecución en el sistema.
+	-e // -A: Muestra todos los procesos.
+	-f: Muestra información completa sobre los procesos, incluyendo la jerarquía.
+	-u <usuario>: Muestra solo los procesos de un usuario específico.
+	-aux: Muestra todos los procesos con detalles (versión BSD).
+iv. pstree
+	Muestra los procesos en ejecución en forma de árbol, mostrando la jerarquía de los procesos.
+	-p: Muestra los IDs de proceso junto a los nombres.
+	-u: Muestra el usuario propietario de cada proceso.
+	-a: Muestra los argumentos completos de cada proceso.
+v. kill
+	Envía señales a procesos, comúnmente para finalizar procesos.
+	-9: Fuerza la terminación del proceso (SIGKILL).
+	-15: Envia una señal de terminación (SIGTERM) de manera más suave (predeterminado si no se especifica).
+	<PID>: ID del proceso al que se desea enviar la señal. {
+SIGTERM (15):
+Descripción: Señal de terminación. Es la señal por defecto si no se especifica ninguna.
+Uso: Se envía para solicitar que un proceso termine de manera limpia. Los procesos pueden manejar esta señal para realizar limpieza antes de cerrar.
+
+SIGKILL (9):
+Descripción: Fuerza la terminación del proceso.
+Uso: No se puede ignorar ni manejar. Se utiliza cuando un proceso no responde a SIGTERM y se necesita cerrarlo inmediatamente.
+
+SIGINT (2):
+Descripción: Señal de interrupción.
+Uso: Generalmente se envía desde el teclado (Ctrl+C). Se utiliza para solicitar que un proceso se interrumpa.
+
+SIGHUP (1):
+Descripción: Señal de colapso.
+Uso: Se envía cuando se cierra la terminal. Algunos procesos pueden utilizar esta señal para recargar su configuración.
+
+SIGQUIT (3):
+Descripción: Señal de salida.
+Uso: Similar a SIGINT, pero el proceso generalmente genera un volcado de memoria antes de terminar.
+
+SIGSTOP (19):
+Descripción: Detiene (pausa) el proceso.
+Uso: No puede ser ignorada. Se utiliza para suspender un proceso sin matarlo. Se puede reanudar con SIGCONT.
+
+SIGCONT (18):
+Descripción: Continúa un proceso detenido.
+Uso: Reanuda la ejecución de un proceso que había sido detenido con SIGSTOP.
+}
+vi. pgrep
+	Busca procesos basándose en criterios específicos.
+	-u <usuario>: Filtra por usuario.
+	-f: Busca en los argumentos del proceso.
+	-l: Muestra el nombre del proceso junto al PID.
+vii. killall
+	Envía una señal a todos los procesos que coinciden con el nombre especificado.
+	-9: Fuerza la terminación de los procesos (SIGKILL).
+	-i: Pide confirmación antes de matar los procesos.
+	<nombre_del_proceso>: Nombre del proceso al que se desea enviar la señal.
+viii. renice
+	Cambia la prioridad de ejecución de uno o más procesos.
+	<nueva_prioridad>: Valor de la nueva prioridad (de -20 a 19).
+	<PID>: ID del proceso cuya prioridad se quiere cambiar.
+	-p: Indica que se están cambiando las prioridades de los procesos por su PID.
+ix. xkill
+	Permite cerrar ventanas gráficas haciendo clic en ellas.
+x. atop
+	Similar a top y htop, pero mas detallado, flexible y con la capacidad de guardar registros de datos.
+//*
+(b) Observe detenidamente el siguiente código. Intente entender lo que hace sin necesidad
+de ejecutarlo.
+
+#i n cl u d e <s t d i o . h>
+#i n cl u d e <s y s / t y p e s . h>
+#i n cl u d e <u ni s t d . h>
+i n t main ( v oid ) {
+i n t c ;
+pid_t pid ;
+p r i n t f ( " Comienzo . : \ n " ) ;
+f o r ( c = 0 ; c < 3 ; c++ )
+{
+pid = f o r k ( ) ;
+}
+p r i n t f ( " P r oce s o \n " ) ;
+r e t u r n 0 ;
+}
+i. ¿Cuántas líneas con la palabra “Proceso” aparecen al final de la ejecución de este
+programa?.
+ii. ¿El número de líneas es el número de procesos que han estado en ejecución?.
+Ejecute el programa y compruebe si su respuesta es correcta, Modifique el valor
+del bucle for y compruebe los nuevos resultados.
+(c) Vamos a tomar una variante del programa anterior. Ahora, además de un mensaje,
+vamos a añadir una variable y, al final del programa vamos a mostrar su valor. El
+nuevo código del programa se muestra a continuación.
+#i n cl u d e <s t d i o . h>
+#i n cl u d e <s y s / t y p e s . h>
+#i n cl u d e <u ni s t d . h>
+i n t main ( v oid ) {
+i n t c ;
+i n t p=0;
+pid_t pid ;
+f o r ( c = 0 ; c < 3 ; c++ )
+{
+pid = f o r k ( ) ;
+}
+p++;
+printf("Proeso%d\n" , p ) ;
+return0 ;
+}
+i. ¿Qué valores se muestran por consola?.
+ii. ¿Todas las líneas tendrán el mismo valor o algunas líneas tendrán valores distintos?.
+iii. ¿Cuál es el valor (o valores) que aparece?. Ejecute el programa y compruebe si su
+respuesta es correcta, Modifique el valor del bucle for y el lugar dónde se incrementa
+la variable p y compruebe los nuevos resultados.
+//*
+(d) Comunicación entre procesos:
+i. Investigue la forma de comunicación entre procesos a través de pipes.
+	La comunicación entre procesos (IPC) a través de pipes permite que un proceso envíe datos a otro de manera eficiente. Un pipe actúa como un canal de comunicación unidireccional, 	donde un proceso puede escribir datos que luego serán leídos por otro proceso.
+ii. ¿Cómo se crea un pipe en C?.
+	En C, un pipe se crea utilizando la función pipe(), que establece un canal de comunicación.
+iii. ¿Qué parametro es necesario para la creación de un pipe?. Explique para que se utiliza.
+	La función pipe() recibe un único parámetro: un array de enteros que contiene dos elementos. Este array se utiliza para almacenar los descriptores de archivo:
+		pipefd[0]: Descriptor de archivo para la lectura del pipe.
+		pipefd[1]: Descriptor de archivo para la escritura en el pipe.
+	Al escribir en pipefd[1], los datos pueden ser leídos desde pipefd[0] en otro proceso.
+
+Los pipes permiten la comunicación unidireccional entre procesos, lo que significa que los datos fluyen en una sola dirección: desde el proceso escritor hacia el proceso lector. Esto se traduce en:
+iv. ¿Qué tipo de comunicación es posible con pipes?
+Comunicación de flujo: Ideal para enviar secuencias de datos.
+Interacción entre procesos relacionados: Como procesos padre e hijo, donde el padre crea el pipe y luego genera un hijo que utiliza este canal para recibir datos.
+Para la comunicación bidireccional, se necesitarían dos pipes o una alternativa como sockets.
+//*
+(e) ¿Cuál es la información mínima que el SO debe tener sobre un proceso?¿En que estructura de datos asociada almacena dicha información?
+Información mínima sobre un proceso:
+	-ID del proceso (PID): Un identificador único para el proceso.
+	-Estado del proceso: Indica si el proceso está en ejecución, suspendido, bloqueado, etc.
+	-Prioridad: Indica la prioridad del proceso para la planificación.
+	-Contador de programa: La dirección de la próxima instrucción que el proceso debe ejecutar.
+	-Contexto del proceso: Información sobre los registros de la CPU y otros estados del hardware necesarios para reanudar la ejecución.
+	-Memoria asignada: Información sobre el espacio de direcciones y el uso de memoria del proceso.
+	-Propietario: Identificación del usuario o grupo que posee el proceso.
+Toda esta informacion se almacena en la PCB del proceso.
+//*
+(f) ¿Qué significa que un proceso sea “CPU Bound” y “I/O Bound”?
+CPU Bound: Utiliza mayoritariamente la CPU para realizar calculos.
+I/O Bound: Utiliza dispositivos y son mas "lentos", debido a que pasan la mayoria del tiempo esperando respuestas de Entrada y Salida.
+//*
+(g) ¿Cuáles son los estados posibles por los que puede atravesar un proceso?
+	NEW - READY - RUNNING - WATING - TERMINATED - SWAPPED
+//*
+(h) Explique mediante un diagrama las posibles transiciones entre los estados.
+nah.
+//*
+(i) ¿Que scheduler de los mencionados en 1 f se encarga de las transiciones?
+Respondido en 1 f.
+////****
+3. Para los siguientes algoritmos de scheduling:
+FCFS (Fisrt Coome First Served)
+SJF (Shortest Job First)
+Round Robin
+Prioridades
+(a) Explique su funcionamiento mediante un ejemplo.
+• FCFS (Fisrt Coome First Served):
+	- Cuando hay que elegir un proceso para ejecutar, se selecciona el mas viejo
+	- No favorece a ningun tipo de procesos, pero en principio prodiamos decir que los CPU Bound terminan al comenzar su primer rafaga, mientras que los I/O Bound no.
+• SJF (Shortest Job First) [NonPreemptive]:
+	- Polıtica nonpreemptive que selecciona el proceso con la rafaga mas corto
+	- Calculo basado en la ejecucion previa
+	- Procesos cortos se colocan delante de procesos largos
+	- Los procesos largos pueden sufrir starvation (inanicion)
+	+ Tiene su version PREEMPTIVE: SRTF (Shortest Remaining Time First) [Preemptive]:
+		+ Similar a SJF pero apropiativo, favorece a los procesos de tipo I/O Bound
+		+ Se considera I/O independiente de la CPU (DMA, PCI, etc.) → uso de CPU y operaciones de I/O en simultaneo
+• Round Robin [Preemptive]:
+	- Politica basada en un reloj
+	- Asigna Quantums a cada proceso
+	- Se utiliza un contador, puede ser VARIABLE (mas usado) o FIJO.
+	- Cuando un proceso es expulsado de la CPU es colocado al final de la Ready Queue y se selecciona otro (FIFO circular)
+• Prioridades [Preemptive ^ NonPreemptive]:
+	- Cada proceso tiene un valor que representa su prioridad → menor valor, mayor prioridad
+	- Se selecciona el proceso de mayor prioridad de los que se encuentran en la Ready Queue
+	- Existe una Ready Queue por cada nivel de prioridad
+	- Procesos de baja prioridad pueden sufrir starvation (inanicion)
+	- Solucion: permitir a un proceso cambiar su prioridad durante su ciclo de vida → Aging o Penalty
+	- Puede ser un algoritmo preemptive o no
+• Colas Multinivel: (No pedido pero explicado por cuestiones didacticas)
+	- Schedulers actuales → combinacion de algoritmos vistos
+	- La ready queue es dividida en varias colas (similar a prioridades)
+	- Los procesos se colocan en las colas segun una clasificacion que realice el sistema operativo
+	- Cada cola posee su propio algoritmo de planificacion → planificador horizontal
+	- A su vez existe un algoritmo que planifica las colas → planificador vertical
+	- Retroalimentacion → un proceso puede cambiar de una cola a la otra
+	- Beneficia a los procesos CPU Bound, I/O Bound se ven perjudicados y sufrir inanicion si llegan muchos procesos CPU Bound
+
+POLITICA DE DESEMPATE:
+Primero -> Orden de llegada de los procesos
+Segundo -> PID de los procesos
+//*
+(b) ¿Alguno de ellos requiere algún parámetro para su funcionamiento?
+• FCFS: No requiere parámetros adicionales.
+• SJF: Requiere estimaciones del tiempo de ejecución.
+• Round Robin: Requiere un valor de quantum.
+• Prioridades: Requiere un nivel de prioridad para cada proceso.
+//*
+(c) Cual es el mas adecuado según los tipos de procesos y/o SO.
+• FCFS: No beneficia particularmente a uno, aunque los CPU Bound se ejecutan en una rafaga mientras que I/O Bound no.
+• SJF: - NonPreemptive -> Favorece procesos cortos.
+	- Preemptive -> Favorece a I/O Bound
+• Round Robin: Adecuado para procesos interactivos y cortos.
+• Prioridades: Adecuado para procesos criticos.
+//*
+(d) Cite ventajas y desventajas de su uso.
+1. FCFS (First Come First Served)
+Ventajas:
+	- Simplicidad: Fácil de implementar y entender. Simplemente se atiende a los procesos en el orden en que llegan.
+	- Justicia: Todos los procesos son tratados de manera equitativa en cuanto a la llegada.
+
+Desventajas:
+	- Tiempos de espera largos: Puede causar tiempos de espera prolongados, especialmente si un proceso largo llega primero (efecto "convoy").
+	- No eficiente: No optimiza el tiempo promedio de espera ni el uso de la CPU.
+2. SJF (Shortest Job First)
+Ventajas:
+	- Minimiza el tiempo de espera: Reduce el tiempo promedio de espera y mejora la eficiencia del sistema.
+	- Menor tiempo de respuesta: Los trabajos cortos se completan rápidamente, lo que beneficia a los usuarios.
+
+Desventajas:
+	- Dificultad para implementar: Requiere conocimiento previo de los tiempos de ejecución, lo que puede ser complicado en la práctica.
+	- Inanición: Los procesos más largos pueden quedarse esperando indefinidamente si siempre llegan procesos cortos.
+3. Round Robin
+Ventajas:
+	- Equidad: Proporciona tiempos de respuesta consistentes y equitativos para todos los procesos.
+	- Ideal para sistemas interactivos: Mejora la interactividad y la satisfacción del usuario en sistemas donde se requieren respuestas rápidas.
+
+Desventajas:
+	- Overhead por cambio de contexto: Si el quantum es demasiado corto, puede haber un alto costo en el cambio de contexto, lo que afecta el rendimiento.
+	- Configuración del quantum: Elegir un quantum óptimo es crítico; un valor muy largo puede llevar a un comportamiento similar a FCFS.
+4. Prioridades
+Ventajas:
+	- Flexibilidad: Permite que procesos importantes o críticos obtengan atención prioritaria.
+	- Adecuado para sistemas en tiempo real: Puede garantizar que tareas críticas se ejecuten a tiempo.
+
+Desventajas:
+	- Inanición: Procesos de baja prioridad pueden quedarse esperando indefinidamente si no se implementan mecanismos de envejecimiento.
+	- Complejidad: Requiere una gestión cuidadosa de las prioridades, lo que puede complicar la implementación.
+
+ALGORITMO     |		VENTAJAS				    |		DESVENTAJAS
+------------------------------------------------------------------------------------------------------------------------------------------
+  FCFS	      |	Simple y justo					    |	Tiempos de espera largos, ineficiencia
+  SJF	      |	Minimiza el tiempo de espera y mejora eficiencia    |	Difícil de implementar, riesgo de inanición
+  Round Robin |	Equitativo y adecuado para sistemas interactivos    |	Overhead alto si el quantum es corto, elección del quantum crítica
+  Prioridades |	Flexible y adecuado para sistemas críticos	    |	Inanición de procesos de baja prioridad, complejidad en la gestión
+
+////****
+4. Para el algoritmo Round Robin, existen 2 variantes:
+Timer Fijo
+Timer Variable
+(a) ¿Qué significan estas 2 variantes?
+TIMER VARIABLE: El contador del Quantum se resetea en cada Context Switch.
+TIMER FIJO: El contador del Q no se modifica al realizar un Context Switch.
+(b) Explique mediante un ejemplo sus diferencias.
+(c) En cada variante ¿Dónde debería residir la información del Quantum?
+TIMER VARIABLE: Contador Local -> PCB
+TIMER FIJO: Contador Global -> Kernel
+////****
+9. Inanición (Starvation)
+(a) ¿Qué significa?
+	Significa que un proceso no obtiene tiempo de ejecucion porque el algoritmo de planificacion no lo favorece.
+(b) ¿Cuál/es de los algoritmos vistos puede provocarla?
+	Algoritmo por prioridades: Aquellos procesos con prioridad baja pueden sufrir inanicion, se resuelve con PENALTY o AGING.
+	Algoritmo SJF y SRTF: Aquellos procesos con rafagas de ejecucion largas.
+	
+(c) ¿Existe alguna técnica que evite la inanición para el/los algoritmos mencionados en b?
+	PENALY y AGING.

@@ -1,0 +1,42 @@
+=> ID: Registro
+Titulo: Como docente quiero registrarme para poder inscribirme a los concursos.
+Reglas de negocio: - Solo se puede registrar un mail unico por cuenta.
+- El DNI del registrado debe estar entre 12 y 55 millones.
+Criterios de aceptacion:
+_Escenario 1: Registro exitoso
+	Dado el mail docente@gmail.com, el cual no esta registrado, con el DNI 20 millones
+	Cuando se ingresan el mail docente@gmail.com, DNI 20 millones, apellido y direccion
+	Entonces se enviara al mail docente@gmail.com una contrasenha generada automaticamente y se registrara al docente.
+
+_Escenario 2: Registro fallido (mail registrado)
+...
+
+_Escenario 3: Registro fallido (DNI fuera de rango)
+...
+
+=> ID: Inscripcion
+Titulo: Como docente registrado quiero inscribirme en un concurso para participar.
+Reglas de negocio: - Maximo de 3 inscripciones vigentes por mail.
+- Un mail no puede inscribirse mas de una vez por concurso.
+Criterios de aceptacion:
+_Escenario 1: Inscripcion exitosa
+	Dado el mail docente@gmail.com el cual esta inscripto al c. matematica 1 y al c. matematica 2
+	Cuando se ingresa el mail docente@gmail.com y se inscribe al c. fisica 1
+	Entonces se registra la inscripcion del mail docente@gmail.com con la descripcion "c. fisica 1" y se emite una peticion de impresion de un comprobante de la inscripcion.
+
+_Escenario 2: Inscripcion fallida (mail excede cupo)
+	Dado el mail docente@gmail.com el cual esta inscripto al concurso de: Historia 1, Historia 2 e Historia 3
+	Cuando se ingresa el mail docente@gmail.com y se inscribe al c. fisica 1
+	Entonces se muestra "error mail excede cupo de inscripciones")
+
+_Escenario 3: Inscripcion fallida (mail ya inscripto)
+...
+
+=> ID: Listado de impresiones
+Titulo: Como Jefe del area de concursos quiero imprimir un listado con los inscriptos a un concurso en particular para que lo firmen.
+Reglas de negocio: None
+Criterios de aceptacion:
+_Escenario 1: Generar listado por concurso
+	Dado el registro de isncripciones del concurso de Fisica Cuantica 3
+	Cuando se ingresa el concurso F. Cuantica en "imprimir listado"
+	Entonces se emite una peticion de impresion del listado de inscriptos al concurso de Fisica Cuantica 3.

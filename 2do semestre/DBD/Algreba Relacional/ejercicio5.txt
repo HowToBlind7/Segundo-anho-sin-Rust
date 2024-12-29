@@ -1,0 +1,79 @@
+{Ejercicio 5
+
+1. Reportar nombre y año de fundación de clubes de la ciudad de La Plata, además del nombre y
+dirección del estadio del mismo.
+2. Listar datos personales de jugadores actuales del club River Plate que hayan jugado en el club
+Boca Juniors.
+3. Listar información de todos los clubes donde se desempeñó el jugador Marcelo Gallardo. Indicar
+nombre, año de fundación y ciudad del club.
+4. Reportar dni, nombre y apellido de aquellos jugadores que no tengan más de 25 años y jueguen en
+algún club de la ciudad de Junín.
+5. Mostrar el nombre de los clubes que tengan jugadores de la ciudad de Chivilcoy mayores de 25
+años.
+6. Reportar el nombre y apellido de aquellos jugadores que hayan jugado en todos los clubes.
+7. Listar nombre de los clubes que no hayan tenido ni tengan jugadores de la ciudad de La Plata.
+8. Mostrar dni, nombre y apellido de aquellos jugadores que jugaron o juegan en el club: Club Atlético
+Rosario Central.
+9. Eliminar al jugador cuyo dni es: 24242424.
+	
+	Club = (codigoClub, nombre, anioFundacion, codigoCiudad(FK))
+	Ciudad = (codigoCiudad, nombre)
+	Estadio = (codigoEstadio, codigoClub(FK), nombre, direccion)
+	Jugador = (dni, nombre, apellido, edad, codigoCiudad(FK))
+	ClubJugador = (codigoClub(FK), dni(FK), desde, hasta)
+}
+
+1. Reportar nombre y año de fundación de clubes de la ciudad de La Plata, además del nombre y
+dirección del estadio del mismo.
+=>
+ClubesLaPlata ⇐ (Club) |x| (π codigoCiudad (Ciudad))
+π ClubesLaPlata.nombre, anioFundacion, Estadio.nombre, Estadio.direccion (σ ClubesLaPlata.codigoCiudad = Estadio.codigoCiudad (ClubesLaPlata) x (Estadio))
+
+2. Listar datos personales de jugadores actuales del club River Plate que hayan jugado en el club Boca Juniors.
+=>
+JugadoresRiver ⇐ (ClubJugador) |x| ((π codigoClub) σ nombre = "River" (Club))
+JugadoresBoca ⇐ (ClubJugador) |x| ((π codigoClub) σ nombre = "Boca Juniors" (Club))
+JugadoresSinCodigos ⇐ (π dni (JugadoresBoca)) ∩ (π dni (JugadoresRiver)) // Esta bien resuelto el ejercicio???
+(Jugador) |x| (JugadoresSinCodigos)
+
+3. Listar información de todos los clubes donde se desempeñó el jugador Marcelo Gallardo. Indicar
+nombre, año de fundación y ciudad del club.
+=>
+ClubesMarcelo ⇐ π codigoClub, nombre, anioFundacion, codigoCiudad (π codigoClub (σ nombre = "Marcelo Gallardo" (Jugador) |x| (ClubJugador))) |x| (Club)
+π ClubesMarcelo.nombre, anioFundacion, Ciudad.nombre (σ ClubesMarcelo.codigoCiudad = Ciudad.codigoCiudad (ClubesMarcelo) x (Ciudad))
+
+4. Reportar dni, nombre y apellido de aquellos jugadores que no tengan más de 25 años y jueguen en algún club de la ciudad de Junín.
+=>
+// Esta bien aplicado el campo hasta vacio para identificar aquellos jugadores ACTUALES a Junin? ->
+ClubJugadoresJunin ⇐ (σ hasta = " " (ClubJugador)) |x| (π codigoClub, codigoCiudad (Club)) |x| (σ nombre = "Junin" (Ciudad))
+π dni, nombre, apellido (σ edad <= 25 (Jugador) |x| (π dni (ClubJugadoresJunin)))
+
+5. Mostrar el nombre de los clubes que tengan jugadores de la ciudad de Chivilcoy mayores de 25
+años.
+=>
+// Esta bien aplicado el campo hasta vacio para identificar aquellos jugadores ACTUALES a Junin? ->
+ClubJugadoresChivilcoy ⇐ (σ hasta = " " (ClubJugador)) |x| (π codigoClub, codigoCiudad (Club)) |x| (σ nombre = "Chivilcoy" (Ciudad))
+π dni, nombre, apellido (σ edad <= 25 (Jugador) |x| (π dni (ClubJugadores)))
+
+6. Reportar el nombre y apellido de aquellos jugadores que hayan jugado en todos los clubes.
+=>
+( 
+	(ClubJugador) % (π codigoClub (Club) 		// Esta bien resuelto?
+) |x| (Jugador)
+
+7. Listar nombre de los clubes que no hayan tenido ni tengan jugadores de la ciudad de La Plata.
+=> // Esta bien resuelto? Hay alguna solucion mas corta/legible/eficiente ? ->
+CodigoClubesPlatenses ⇐ π codigoClub (
+					(ClubJugador) |x| (Jugador) |x| (π codigoCiudad (σ nombre = "La Plata" (Ciudad)))
+				      )
+ClubesPlatenses ⇐ π codigoClub, nombre, anioFundacion, codigoCiudad ((Club) |x| (CodigoClubesPlatenses))
+π nombre ((Club) - (ClubesPlatenses))
+
+8. Mostrar dni, nombre y apellido de aquellos jugadores que jugaron o juegan en el club: Club Atlético
+Rosario Central.
+π dni, nombre, apellido [(Jugador) |x| (ClubJugador) |x| (π codigoClub (σ nombre = "Club Atletico Rosario Central" (Club)))]
+
+9. Eliminar al jugador cuyo dni es: 24242424.
+=>
+(Jugador) ⇐ (Jugador) - (σ dni = "24242424" (Jugador))
+(ClubJugador) ⇐ (ClubJugador) - (σ dni = "24242424" (ClubJugador))

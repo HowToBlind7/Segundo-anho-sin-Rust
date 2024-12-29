@@ -1,0 +1,615 @@
+1)a) Caracteristicas de GNU: 
+	-Libertad para usar el progerama con cualquier proposito.
+	-Libertad para estudiar su funcionamiento.
+	-Libertad para distribuir sus copias.
+	-Libertad para mejorar los programas.
+
+b) SO como Windows o Mac OS no comparten ninguna de las caracteristicas mencionadas en el inciso anterior.
+c) Es un SO tipo unix pero de uso libre, gratuito y de codigo abierto.
+d) A mediados de los 60, se estaba desarrollando Multics, uno de los primeros SO de tiempo compartido. Multics, sirvio como predecesor de Unics (luego rebautizado como Unix), aunque Multics no cumplio las expectativas, los investigadores de esa epoca buscaron desarrollar en base a este SO, otro que sea multitarea y multiusuario con la diferencia de ser mas compacto/pequenho (caracteristica que Multics no cumplia satisfactoriamente). Entre el 69 y el 72 Unix se pone en auge debido a que distintas organizaciones comenzaron utilizarlo y distribuirlo debido a que era libre, gratuito y abierto. Tal fue el exito, que empezaron a aparecer multiples versiones de Unix las cuales, en gran medida, fueron desarrolladas por voluntarios. Hoy Unix, no solo es una marca cuya propiedad pertenece a "The Open Group" sino que tambien es una familia de SO que comparten unos criterios de diseño e interoperabilidad en común.
+
+2)a) Una distribución de GNU/Linux, o simplemente distribución Linux, es una colección de software basada en el núcleo (kernel) de Linux, que incluye una variedad de componentes y aplicaciones para proporcionar un sistema operativo completo. Las distribuciones combinan el núcleo Linux con herramientas y aplicaciones del proyecto GNU, además de otros programas de software libre y de código abierto.
+
+b) Ubuntu:
+
+Gestor de Paquetes: APT (Advanced Package Tool).
+Entorno de Escritorio: GNOME (anteriormente utilizaba Unity en versiones anteriores).
+Enfoque: Fácil de usar, ideal para principiantes y usuarios que buscan un sistema que funcione bien "fuera de la caja".
+Soporte: Amplio soporte comunitario y comercial, con actualizaciones regulares y versiones LTS (Long Term Support) que garantizan estabilidad y soporte a largo plazo.
+Debian:
+
+Gestor de Paquetes: APT.
+Entorno de Escritorio: No tiene un entorno de escritorio predeterminado; los usuarios pueden elegir entre GNOME, KDE, Xfce, y otros.
+Enfoque: Enfoque en la estabilidad y la robustez, utilizado como base para muchas otras distribuciones.
+Soporte: Menos actualizaciones frecuentes en comparación con Ubuntu, pero con un enfoque fuerte en la estabilidad y la seguridad.
+Fedora:
+
+Gestor de Paquetes: DNF (Dandified YUM).
+Entorno de Escritorio: GNOME (predeterminado), aunque están disponibles otros entornos de escritorio.
+Enfoque: Enfocada en ofrecer las últimas características y tecnologías. Es conocida por su carácter innovador y por estar más cerca de las últimas versiones de software.
+Soporte: Ciclos de vida más cortos para las versiones, con una nueva versión cada seis meses. No tiene soporte a largo plazo.
+Arch Linux:
+
+Gestor de Paquetes: Pacman.
+Entorno de Escritorio: No tiene un entorno de escritorio predeterminado; los usuarios deben configurar su entorno desde cero.
+Enfoque: Enfoque en la simplicidad y la personalización. Utiliza el modelo de Rolling Release, lo que significa que siempre tiene las versiones más recientes del software.
+Soporte: Comunidad activa con una filosofía de "hazlo tú mismo", lo que implica que los usuarios deben estar dispuestos a aprender y configurar su sistema manualmente.
+
+c) Las diferencias entre distribuciones de GNU/Linux pueden ser bastante variadas, y dependen de varios factores. Aquí te detallo algunos aspectos clave en los que las distribuciones pueden diferir:
+
+Gestor de Paquetes:
+
+Qué es: El sistema y herramientas que se utilizan para instalar, actualizar y eliminar software.
+Ejemplos:
+APT en Debian y Ubuntu.
+DNF en Fedora.
+Pacman en Arch Linux.
+Entorno de Escritorio:
+
+Qué es: La interfaz gráfica que se ofrece para interactuar con el sistema operativo.
+Ejemplos:
+GNOME (predeterminado en Fedora y Ubuntu).
+KDE Plasma (disponible en Kubuntu, openSUSE).
+Xfce y LXQt (en distribuciones como Xubuntu y Lubuntu).
+Modelo de Actualización:
+
+Qué es: Cómo se gestionan las actualizaciones del sistema y del software.
+Ejemplos:
+Rolling Release (Arch Linux, Manjaro): Las actualizaciones se aplican continuamente, siempre tendrás el software más reciente.
+Versión Estable (Debian, Ubuntu LTS): Las versiones del software se congelan durante un ciclo de desarrollo y se actualizan periódicamente con nuevas versiones.
+Base del Sistema:
+
+Qué es: El núcleo y las herramientas básicas sobre las que se construye la distribución.
+Ejemplos:
+Debian: Base para Ubuntu y otras distribuciones.
+Red Hat: Base para Fedora y CentOS.
+Arch Linux: Base para Manjaro y otras distribuciones derivadas.
+Soporte y Actualizaciones:
+
+Qué es: La frecuencia y duración del soporte técnico y las actualizaciones del sistema.
+Ejemplos:
+Ubuntu LTS (Long Term Support): Ofrece soporte y actualizaciones durante cinco años.
+Fedora: Ofrece soporte para cada versión durante aproximadamente 13 meses.
+Arch Linux: No tiene un ciclo de soporte específico, ya que el modelo Rolling Release asegura actualizaciones continuas.
+Filosofía y Enfoque:
+
+Qué es: El objetivo y la filosofía detrás de la distribución, que puede influir en la selección del software, la configuración por defecto y la facilidad de uso.
+Ejemplos:
+Ubuntu: Enfocado en la facilidad de uso y la accesibilidad para usuarios nuevos.
+Arch Linux: Enfocado en la simplicidad y la personalización, proporcionando una base mínima para que los usuarios construyan su sistema según sus necesidades.
+Fedora: Enfocado en la vanguardia tecnológica y la integración de las últimas innovaciones.
+Licencias y Software Incluido:
+
+Qué es: Las licencias del software que se incluye en la distribución y las políticas sobre software libre y propietario.
+Ejemplos:
+Debian: Se enfoca en el software libre y solo incluye software que cumple con sus Directrices de Software Libre.
+Ubuntu: Ofrece una combinación de software libre y propietario, especialmente para facilitar la instalación de controladores y codecs.
+
+d) Debian es una de las distribuciones de GNU/Linux más antiguas y respetadas, conocida por su estabilidad y flexibilidad. El proyecto Debian se enfoca en crear un sistema operativo universal y de alta calidad, libre y de código abierto, que se puede usar en una variedad de dispositivos y entornos.
+OBJETIVOS DEL PROYECTO DEBIAN: 
+	-Proporcionar un sistema operativo libre de alta calidad.
+	-Garantizar la libertad de software.
+	-Ser universalmente accesible.
+	-Promover una comunidad inclusiva y colaborativa.
+CRONOLOGIA: 1993: El proyecto Debian fue iniciado por Ian Murdock, quien lanzó Debian como un sistema operativo basado en el núcleo de Linux y en el sistema de paquetes de Debian, con la intención de crear una distribución abierta y comunitaria.
+
+1994: Se lanzó la primera versión oficial de Debian, Debian 0.91, que incluía un número limitado de paquetes y se basaba en el núcleo de Linux 1.0.
+
+1996: Debian 1.1 ("Buzz") fue lanzado. Esta versión marcó el primer lanzamiento importante del proyecto y estableció una base más sólida para el futuro desarrollo de Debian.
+
+1998: Se lanzó Debian 2.0 ("Hamm"), que introdujo un sistema de gestión de paquetes más avanzado y un soporte mejorado para arquitecturas múltiples.
+
+2001: Debian 3.0 ("Woody") fue lanzado con soporte para más arquitecturas y un enfoque en la estabilidad y la calidad.
+
+2005: Debian 3.1 ("Sarge") fue lanzado, y este lanzamiento incluyó mejoras significativas en el sistema de paquetes y la incorporación de nuevas tecnologías.
+
+2007: Debian 4.0 ("Etch") fue lanzado y se destacó por su estabilidad y la integración de tecnologías avanzadas.
+
+2009: Debian 5.0 ("Lenny") fue lanzado, con mejoras en la seguridad y en el sistema de paquetes.
+
+2012: Debian 6.0 ("Squeeze") fue lanzado, trayendo mejoras en la administración de paquetes y el soporte para nuevos dispositivos y arquitecturas.
+
+2015: Debian 8.0 ("Jessie") fue lanzado, con importantes actualizaciones en la gestión de paquetes y en la seguridad.
+
+2017: Debian 9.0 ("Stretch") fue lanzado, mejorando aún más la estabilidad y la seguridad.
+
+2019: Debian 10.0 ("Buster") fue lanzado, con mejoras en la administración de paquetes y soporte para nuevas tecnologías.
+
+2021: Debian 11.0 ("Bullseye") fue lanzado, ofreciendo un gran número de actualizaciones y mejoras en el sistema.
+
+3) a) & b) ->
+● El kernel (núcleo): Núcleo del sistema operativo GNU/Linux y actúa como intermediario entre el hardware del computador y el software que se ejecuta sobre él. 
+Funciones Clave:
+	-Gestión de Recursos: Controla el acceso a la CPU, la memoria y otros recursos hardware, asegurando que cada proceso tenga los recursos que necesita de manera eficiente.
+	-Gestión de Procesos: Administra la creación, ejecución y finalización de procesos, así como la asignación de tiempo de CPU.
+	-Gestión de Dispositivos: Proporciona controladores y soporte para interactuar con dispositivos de hardware como discos, impresoras y redes.
+	-Interfaz de Software: Ofrece servicios y funciones que las aplicaciones pueden usar para realizar operaciones básicas sin interactuar directamente con el hardware.
+● El Shell (intérprete de comandos): : El shell es una interfaz de usuario que permite interactuar con el sistema operativo a través de comandos de texto. Actúa como un intérprete que traduce los comandos introducidos por el usuario en acciones que el sistema puede ejecutar.
+Funciones Clave:
+	-Ejecución de Comandos: Permite a los usuarios ejecutar comandos para realizar tareas como copiar archivos, gestionar procesos y configurar el sistema.
+	-Automatización de Tareas: Facilita la creación y ejecución de scripts para automatizar tareas repetitivas o complejas.
+	-Interacción con el Sistema: Ofrece una manera de acceder a las funcionalidades del sistema operativo y manipular archivos y procesos mediante comandos y scripts.
+● El FileSystem (sistema de archivos): organiza y gestiona cómo se almacenan, acceden y manipulan los datos en los dispositivos de almacenamiento. Define la estructura y la organización de archivos y directorios.
+Funciones Clave:
+	-Organización de Datos: Proporciona una jerarquía de directorios y archivos, permitiendo una estructura organizada para almacenar datos.
+	-Acceso y Permisos: Controla el acceso a los archivos y directorios mediante permisos, determinando quién puede leer, escribir o ejecutar cada archivo.
+	-Gestión de Espacio: Administra el uso del espacio en disco, asegurando que el almacenamiento se utilice de manera eficiente y que el espacio se libere cuando sea necesario.
+
+4) a) 
+● Orígenes y Primeros Pasos (1991-1994)
+
+-1991: Linus Torvalds inicia el desarrollo del kernel Linux, lanzando la versión 0.01.
+-1992: Se lanza la versión 0.12, seguida por la 0.95 con mejoras en la estabilidad y la interfaz.
+-1994: Se lanza Linux 1.0, marcando el primer lanzamiento oficial del kernel.
+
+● Expansión y Madurez (1995-1999)
+
+-1995: Linux 1.2 introduce soporte para nuevas arquitecturas y mejoras en el sistema de archivos.
+-1996: Linux 2.0 añade soporte para multiprocesadores (SMP).
+-1999: Linux 2.2 mejora el soporte para arquitecturas de hardware y la gestión de red.
+
+● Innovación y Crecimiento (2000-2009)
+
+-2001: Linux 2.4 mejora el soporte para hardware y añade sistemas de archivos avanzados.
+-2003: Linux 2.6 introduce importantes mejoras en la arquitectura del kernel y el rendimiento.
+
+● Modelo de Lanzamiento Rolling Release y Avances Continuos (2010-2024)
+
+-2011: Linux 3.0 celebra el cambio de versión con mejoras en escalabilidad y rendimiento.
+-2015: Linux 4.0 introduce live patching para actualizaciones sin reinicio.
+-2017: Linux 4.14 añade soporte de Long-Term Support (LTS).
+-2020: Linux 5.0 trae mejoras en rendimiento y compatibilidad con hardware.
+-2022 y en adelante: Linux 6.x continúa con innovaciones y mejoras en soporte y rendimiento.
+
+c) La última versión estable del núcleo Linux, la 6.9, se publicó el 12 de mayo de 2024.
+d) Si.
+e) El codigo fuente del kernel se encuentra en el directorio "/usr/src/Linux".
+f) Si, es monolitico. De hecho, es monolitico hibrido debido a que los controladores de dispositivos y las
+extensiones al sistema operativo se pueden cargar y descargar fácilmente como módulos,
+mientras el sistema continúa funcionando sin interrupciones. También, a diferencia de los
+núcleos monolíticos tradicionales, los controladores pueden ser detenidos
+momentáneamente por actividades más importantes bajo ciertas condiciones. Esta
+habilidad fue agregada para manejar correctamente interrupciones de hardware, y para
+mejorar el soporte de Multiprocesamiento Simétrico.
+
+5) a) El Shell (intérprete de comandos) es el programa que recibe lo que se escribe en la terminal
+y lo convierte en instrucciones para el sistema operativo.
+
+b) /bin/sh Bourne Shell. Está disponible en todas las versiones de UNIX y es lo
+suficientemente básico como para que funcione en todas las plataformas. (Básico y universalmente compatible, ideal para scripts simples.)
+
+/bin/csh Debe su nombre al lenguaje de programación C (al hacer scripts, puede utilizarse
+una sintaxis similar a la de C). Estándar en los BSD y derivados. (Ofrece una sintaxis inspirada en C, útil en sistemas BSD.)
+
+/bin/ksh Korn Shell; estándar de SYSV. Maneja un historial de comandos. Basado en sh,
+con agregados para hacerlo más amigable. (Basado en sh, con características avanzadas y un historial de comandos mejorado)
+
+/bin/bash Bourne Again Shell. Uno de los shells más avanzados y populares en GNU/Linux.
+Tiene licencia GNU. Ofrece las mismas capacidades que csh, pero incluye
+funciones avanzadas: un historial de los comandos ejecutados, que se conserva
+incluso al pasar de una sesión a otra, accesible utilizando los cursores
+(arriba/abajo), auto completado de nombres de comandos o archivos presionando
+TAB, manejo de varios tipos de redirecciones de entrada/salida. (Shell avanzado con muchas características modernas, popular en GNU/Linux)
+
+/bin/zsh Se diseñó para poder usarse interactivamente. Se le han incorporado muchas de
+las características principales de otras shells de Unix como bash, ksh y además
+posee características propias originales. macOS Catalina, lanzada en octubre de
+2019 adoptó a Zsh como la shell predeterminada, reemplazando a Bash. (Shell interactiva con una amplia gama de características y opciones de personalización, adoptado recientemente en macOS)
+
+c) Los comandos propios del shell no tienen una direccion en el sistema de archivos sino que estan integrados en la Shell y los comandos externos pueden estar en /bin, /usr/bin, /usr/local/bin o cualquier otra ubicación si se la agrega a la variable PATH.
+
+d) La funcion del shell y del kernel son distintas: El kernel maneja la comunicación directa con el hardware y gestiona recursos críticos del sistema en modo núcleo, mientras que el shell es una interfaz de usuario que interactúa con el kernel para ejecutar comandos y scripts en modo usuario. Al tener roles distintos y ser un SO tan modularizado, sus codigos residen en diferentes lugares respectivamente.
+
+e) Si es posible,  el intérprete de comandos predeterminado para cada usuario se define en el archivo /etc/passwd. Los usuarios pueden cambiar su propio shell usando el comando chsh, siempre que el nuevo shell esté en /etc/shells. Los administradores pueden cambiar el shell de otros usuarios editando /etc/passwd o usando chsh con privilegios de superusuario. 
+
+6)a) Es un sistema de archivos, una manera de organizar y gestionar los datos almacenados en memoria secundaria.
+
+Un sistema de archivos tiene varias responsabilidades clave:
+
+Gestión de Archivos: Define cómo se almacenan los archivos en el dispositivo, incluyendo el nombre del archivo, su tamaño, y su ubicación en el disco.
+
+Estructura de Directorios: Organiza los archivos en una jerarquía de directorios o carpetas, lo que facilita la navegación y la organización de los archivos.
+
+Control de Acceso: Establece permisos y políticas de acceso para los archivos y directorios, determinando quién puede leer, escribir o ejecutar archivos.
+
+Integridad de Datos: Implementa mecanismos para asegurar la integridad de los datos, evitando la corrupción y permitiendo la recuperación de archivos en caso de fallos.
+
+Asignación de Espacio: Maneja cómo se asigna y se libera el espacio en el dispositivo de almacenamiento, optimizando el uso del espacio disponible.
+
+b) Ext2 (Second Extended File System), Ext3 (Third Extended File System) es un
+sistema de archivos con registro por diario,  Ext4 (Fourth Extended File System), Btrfs (B-Tree File System), ReiserFS es un sistema de archivos de propósito general, XFS es un sistema de archivos de 64 bits con journaling de alto rendimiento.
+
+c) Es posible visualizar particiones Fat y NTFS.
+
+d) / (Raíz): Descripción: El directorio raíz es el punto de inicio de la jerarquía de directorios en GNU/Linux. Contenido: Contiene todos los demás directorios del sistema. Es el "raíz" de todo el sistema de archivos.
+/bin: bin es la abreviación de binaries (binarios), o ejecutables. Es donde residen la mayoría
+de los programas esenciales del sistema, como cp, ls y mv. Por ejemplo, cuando se usa la
+orden cp, se está ejecutando el programa /bin/cp. Si ejecutamos el comando ls -F se verá
+que la mayoría de los ficheros de /bin tienen un asterisco añadido al final de sus nombres;
+esto indica que son archivos ejecutables.
+/dev: Los archivos en /dev son conocidos como controladores de dispositivo (device drivers)
+son usados para acceder a los dispositivos del sistema y recursos, como discos duros,
+memoria, etc.
+/etc: contiene una serie de archivos de configuración del sistema. Estos incluyen
+/etc/passwd (la base de datos de usuarios), /etc/rc (scripts de inicialización del sistema), etc.
+/sbin: se usa para almacenar programas esenciales del sistema, que usará el administrador
+del sistema.
+/home: contiene los directorios "home" de los usuarios. Por ejemplo, /home/ISO_CSO es el
+directorio del usuario ISO_CSO.
+/lib: contiene las imágenes de las librerías compartidas. Estos archivos contienen código
+que compartirán muchos programas. En lugar de que cada programa contenga una copia
+propia de las rutinas compartidas, estas son guardadas en un lugar común, en /lib. Esto
+hace que los programas ejecutables sean menores y reduce el espacio usado en disco.
+/proc: es un "sistema de ficheros virtual". Los ficheros que contiene realmente residen en la
+memoria, no en un disco. Hacen referencia a varios procesos que corren en el sistema, y le
+permiten obtener información acerca de que programas y procesos están corriendo en un
+momento dado.
+/root: Directorio home de root.
+/tmp: Muchos programas tienen la necesidad de generar cierta información temporal y
+guardarla en un fichero temporal. El lugar habitual para esos ficheros es en /tmp.
+/usr: es un directorio muy importante. Contienen una serie de subdirectorios que contienen
+a su vez algunos de los más importantes y útiles programas y archivos de configuración
+usados en el sistema.
+/var: contiene directorios que a menudo cambian su tamaño o tienden a crecer.
+
+FHS: El Filesystem Hierarchy Standard es un estándar que define la estructura y el contenido de los directorios de un sistema de archivos en GNU/Linux y otros sistemas Unix-like. El propósito de FHS es proporcionar una estructura consistente para los archivos y directorios, lo que facilita la interoperabilidad entre diferentes distribuciones de Linux y otros sistemas operativos compatibles.
+
+7) a) La partición de discos es un proceso que consiste en dividir el espacio de almacenamiento de un disco duro en secciones separadas, llamadas particiones. Cada partición puede contener un sistema operativo, archivos o datos, y se puede gestionar de manera independiente.
+Tipos de partición en Gnu/Linux:
+
+1. Partición primaria: es una partición que contiene un sistema operativo y se puede arrancar desde ella.
+2. Partición extendida: es una partición que contiene otras particiones lógicas.
+3. Partición lógica: es una partición que se crea dentro de una partición extendida.
+4. Partición swap: es una partición que se utiliza como memoria virtual.
+
+Ventajas de la partición de discos en Gnu/Linux:
+
+1. Organización: permite organizar los archivos y sistemas operativos de manera lógica.
+2. Seguridad: permite separar los datos personales de los sistemas operativos.
+3. Facilidad de recuperación: en caso de fallo, se puede recuperar más fácilmente.
+4. Mejora del rendimiento: permite optimizar el rendimiento del disco duro.
+
+Desventajas de la partición de discos en Gnu/Linux:
+
+1. Complejidad: puede ser complicado para los usuarios principiantes.
+2. Limitaciones: hay un límite en el número de particiones que se pueden crear.
+3. Riesgo de pérdida de datos: si se elimina o se daña una partición, se pueden perder datos.
+
+b) En Gnu/Linux, las particiones se identifican mediante un esquema de denominación que incluye el tipo de disco y el número de partición. Aquí te explico cómo se identifican las particiones en discos IDE, SCSI y SATA:
+
+1. Discos IDE (PATA):
+    - /dev/hda (disco IDE primario, maestro)
+    - /dev/hdb (disco IDE secundario, esclavo)
+    - /dev/hdc (disco IDE terciario, maestro)
+    - /dev/hdd (disco IDE cuaternario, esclavo)
+    - Particiones: /dev/hda1, /dev/hda2, /dev/hdb1, etc.
+2. Discos SCSI y SATA:
+    - /dev/sda (disco SCSI o SATA, dispositivo 0)
+    - /dev/sdb (disco SCSI o SATA, dispositivo 1)
+    - /dev/sdc (disco SCSI o SATA, dispositivo 2)
+    - ...
+    - Particiones: /dev/sda1, /dev/sda2, /dev/sdb1, etc.
+
+En resumen, los discos IDE se identifican con "hd" seguido de una letra (a, b, c, etc.), mientras que los discos SCSI y SATA se identifican con "sd" seguido de una letra (a, b, c, etc.). El número que sigue a la letra identifica la partición.
+
+Por ejemplo:
+
+- /dev/hda1 es la primera partición del disco IDE primario
+- /dev/sda2 es la segunda partición del primer disco SCSI o SATA
+
+Es importante tener en cuenta que, en sistemas modernos, los discos se identifican mediante el esquema de denominación "sd", independientemente del tipo de interfaz (IDE, SCSI, SATA, etc.).
+
+d) Ej. 1: Sistema operativo principal
+
+- Partición 1: /dev/sda1 (20 GB) - Sistema operativo principal (root)
+- Partición 2: /dev/sda2 (10 GB) - Swap (memoria virtual)
+- Partición 3: /dev/sda3 (500 GB) - Datos personales (home)
+
+Ej. 2: Servidor web
+
+- Partición 1: /dev/sda1 (50 GB) - Sistema operativo principal (root)
+- Partición 2: /dev/sda2 (20 GB) - Swap (memoria virtual)
+- Partición 3: /dev/sda3 (100 GB) - Datos del servidor web (var/www)
+- Partición 4: /dev/sda4 (500 GB) - Datos de respaldo (backups)
+
+Ej. 3: Estación de trabajo gráfica
+
+- Partición 1: /dev/sda1 (50 GB) - Sistema operativo principal (root)
+- Partición 2: /dev/sda2 (20 GB) - Swap (memoria virtual)
+- Partición 3: /dev/sda3 (200 GB) - Datos de proyectos gráficos (home)
+- Partición 4: /dev/sda4 (500 GB) - Datos de imágenes y videos (datos multimedia)
+
+e) - Facilidad de uso: GParted, EaseUS Partition Master y Disk Management son fáciles de usar, mientras que fdisk, cfdisk y parted requieren conocimientos de línea de comandos.
+- Opciones avanzadas: PartitionMagic, Acronis Disk Director y parted ofrecen muchas opciones avanzadas.
+- Compatibilidad: GParted y parted son compatibles con Linux, mientras que PartitionMagic y Acronis Disk Director son compatibles con Windows.
+- Costo: fdisk, GParted, cfdisk, parted y Disk Management son gratuitos, mientras que PartitionMagic y Acronis Disk Director son comerciales.
+
+f) Editores
+
+- vi: Editor de texto modal, es decir, tiene diferentes modos de funcionamiento (insertar, editar, comando). Se abre con "vi nombre_archivo" y se cierra con ":wq".
+- mcedit: Editor de texto gráfico, fácil de usar y con interfaz intuitiva. Se abre con "mcedit nombre_archivo" y se cierra con "F10".
+
+Comandos
+
+- cat: Muestra el contenido de un archivo en la pantalla. Ejemplo: "cat nombre_archivo".
+- more: Muestra el contenido de un archivo en la pantalla, pero paginado. Ejemplo: "more nombre_archivo".
+
+8) a) El BIOS es un firmware, un tipo de software integrado en un chip en la placa base de una computadora. Se encarga de la inicialización y la configuración del hardware durante el arranque del sistema. Funciones:
+	-Realiza un autodiagnóstico conocido como POST cuando se enciende la computadora. Verifica el estado del hardware básico.
+	-Configura y pone en marcha el hardware básico necesario para que el sistema operativo pueda funcionar.
+	-Configuración del Entorno del Sistema: Establece parámetros importantes relacionados con el hardware y el sistema.
+	-Localización del Dispositivo de Arranque: iIdentifica y selecciona el dispositivo de arranque (Lee la tabla de particiones y busca el sector de arranque del dispositivo para 	cargar el cargador de arranque (bootloader)).
+	-Transfiere el control del sistema al cargador de arranque para cargar el kernel en memoria para luego darle el control a este.
+
+b) UEFI: Es un firmware que proporciona una interfaz entre el sistema operativo y el hardware del ordenador, sucediendo al BIOS. Ofreciendo características avanzadas y mejoras en comparación con el BIOS tradicional. Funciones Clave:
+	-Maneja el proceso de arranque del sistema.
+	-Ofrece una interfaz gráfica y amigable.
+	-Soporta el esquema de particionamiento GPT.
+	-Proporciona características de seguridad avanzadas.
+	-Mejora la compatibilidad con hardware moderno.
+	-Permite la carga de controladores y utilidades desde el firmware.
+	-Soporta configuraciones de red y almacenamiento.
+	-Ofrece compatibilidad con el modo legado para software antiguo.
+
+c) MBR: (Master Boot Record) es un esquema de particionamiento y un área de arranque en discos duros y otros dispositivos de almacenamiento. Se encuentra en el sector 0 de la memoria secundaria y ocupa 512 bytes. Contiene la tabla de particiones del disco, el codigo de arranque (MBC (Master Boot Code): Este código busca y carga el cargador de arranque del sistema operativo desde la partición activa y ocupa 446 bytes del MBR). Permite un máximo de cuatro particiones primarias o tres primarias y una extendida. MBR es compatible con sistemas BIOS tradicionales y es un estándar antiguo utilizado en muchos sistemas de almacenamiento.
+
+d) GPT: GUID (Globally Unique Identifier: etiqueta de 128 bits usada para identificar de manera única las particiones en un disco) Partition Table. Sustituye al MBR.
+Formato:
+	-Encabezado de GPT: Contiene información sobre la tabla de particiones, el número total de particiones y otros datos críticos.
+	-Tabla de Particiones GPT: Es una tabla que define todas las particiones en el disco, incluyendo detalles como el tipo de partición, tamaño, y ubicación.
+	-Entrada de Partición GPT: Cada entrada de la tabla de particiones GPT describe una partición en el disco, utilizando un GUID único para identificar cada partición.
+
+e) Un gestor de arranque (bootloader) es un software que se encarga de iniciar el proceso de arranque del sistema operativo. Su tarea principal es cargar el núcleo (kernel) del sistema operativo desde el dispositivo de almacenamiento a la memoria y transferirle el control para que el sistema operativo pueda arrancar.
+Tipos de gestor de arranque: 
+-Cargador de Arranque Primario:
+	Se ejecuta primero y transfiere el control a un cargador de arranque secundario.
+	Ejemplo: GRUB (GRand Unified Bootloader) & Syslinux.
+-Cargador de Arranque Secundario:
+	Carga el sistema operativo desde el disco.
+	Ejemplo: LILO (LInux LOader) & rEFInd.
+Lugar de instalacion:
+	-Primero: El gestor de arranque se instala en el MBR del disco o en la partición EFI (en sistemas UEFI).
+	-Alternativamente: También puede estar en la partición de arranque de una instalación específica.
+
+f) Pasos de arranque:
+1 - Encendido: La computadora se enciende y recibe energía. Los componentes inicializan y se ponen en marcha.
+2 - POST: El BIOS o UEFI realiza un autodiagnóstico para verificar el hardware básico (memoria, teclado, etc.).
+3 - BIOS/UEFI: El BIOS (Basic Input/Output System) o UEFI (Unified Extensible Firmware Interface) se carga y configura el hardware esencial. Luego, busca el dispositivo de arranque.
+4 - Ejecución del MBR (Master Boot Record) o EFI.
+5 - Carga del Gestor de Arranque: El MBR o EFI transfiere el control al gestor de arranque.
+6 - Carga del Cargador de Arranque del Sistema Operativo: El gestor de arranque carga el cargador de arranque del sistema operativo desde la partición o disco especificado. Este cargador 7 de arranque (como GRUB) es responsable de cargar el núcleo (kernel) del sistema operativo.
+7 - Carga del Núcleo del Sistema Operativo (Kernel):  El cargador de arranque carga el kernel del sistema operativo en la memoria y lo inicializa.
+8 - Inicialización del Sistema Operativo: El kernel inicia los servicios y controladores necesarios. Luego, ejecuta el proceso de inicio del sistema operativo, como el init o el systemd, que a su vez inicia otros servicios y aplicaciones del sistema.
+9 - Inicio de la Interfaz de Usuario: El sistema operativo carga la interfaz de usuario.
+
+g) Proceso de Arranque en GNU/Linux:
+
+1 - Encendido: La computadora se enciende y realiza el POST (Power-On Self-Test).
+2 - Cargador de Firmware: BIOS o UEFI se inicializa y busca el dispositivo de arranque.
+3 - Gestor de Arranque:
+
+BIOS: Busca el MBR en el disco.
+UEFI: Busca el archivo del gestor de arranque en la partición EFI.
+Ejemplo de Gestor: GRUB (carga el kernel de GNU/Linux).
+
+4 - Cargador de Arranque del SO: El gestor de arranque transfiere el control al cargador de arranque del sistema operativo, que carga el núcleo (kernel).
+5 - Carga del Kernel: El kernel de GNU/Linux se carga en memoria y se inicializa.
+6 - Inicialización del Sistema: El kernel arranca el proceso de inicialización del sistema (init o systemd).
+7 - Inicio de Servicios: init o systemd inicia los servicios del sistema y configura el entorno.
+8 - Interfaz de Usuario: Se carga la interfaz gráfica o de línea de comandos, permitiendo la interacción del usuario.
+
+h)Proceso de Parada (Shutdown) en GNU/Linux:
+
+1 - Iniciar Shutdown: El usuario o administrador ejecuta el comando de apagado (e.g., shutdown, poweroff, halt).
+2 - Notificación de Servicios: init o systemd envía señales a los servicios para que se detengan de forma ordenada.
+3 - Detención de Servicios: Los servicios y demonios se detienen, liberando recursos y guardando datos.
+4 - Desmontaje de Sistemas de Archivos: Los sistemas de archivos se desmontan para garantizar la integridad de los datos.
+5 - Apagado del Sistema: El kernel ordena al hardware que apague el sistema o reinicie, dependiendo del comando.
+6 - Apagado Completo: La computadora se apaga completamente o se reinicia.
+
+i) Sí, es posible tener GNU/Linux y otro sistema operativo (como Windows) instalados en una misma PC. Esto se logra mediante arranque dual (dual-boot), donde ambos sistemas operativos se instalan en particiones separadas del mismo disco o en discos diferentes. Un gestor de arranque (como GRUB) se encarga de permitir al usuario seleccionar cuál sistema operativo iniciar durante el arranque de la computadora.
+
+9) a) En GNU/Linux, los archivos se identifican mediante:
+
+-Nombre del Archivo: Cada archivo tiene un nombre único dentro de su directorio.
+
+-Ruta: La ubicación completa del archivo en el sistema de archivos, por ejemplo, /home/usuario/documento.txt.
+
+-Inodo: Cada archivo tiene un identificador único llamado inodo, que almacena metadatos como permisos, propietario, tamaño, y ubicación física en el disco. El número de inodo es utilizado por el sistema de archivos para gestionar y acceder al archivo.
+
+-Permisos y Propietario: Los permisos de lectura, escritura y ejecución, y el propietario del archivo, ayudan a definir el acceso y control sobre el archivo.
+
+10) a) (a) Crear la carpeta ISO2017
+	Comando: mkdir ISO2017 -> parametros: "-p": Crea directorios padre si no existen (útil si estás creando una estructura de directorios anidada).
+
+(b) Acceder a la carpeta
+Comando: cd ISO2017 -> parametros: "..": Regresa al directorio padre. "-": Regresa al directorio anterior.
+
+(c) Crear dos archivos con los nombres iso2017-1 e iso2017-2
+Comando: touch iso2017-1 iso2017-2 -> parametros: "-a": Cambia la fecha de acceso del archivo. "-m": Cambia la fecha de modificación del archivo. "-c": No crea archivos si no existen.
+
+d) Listar el contenido del directorio actual
+Comando: ls -> parametros: "-l": Muestra la lista en formato largo (incluye permisos, número de enlaces, propietario, grupo, tamaño, fecha y nombre del archivo). "-a": Muestra archivos ocultos (los que comienzan con un punto). "-h": Muestra tamaños de archivo en formato legible por humanos (KB, MB).
+
+(e) Visualizar la ruta donde estoy situado
+Comando: pwd -> parametros: (no tiene parametros importantes)
+
+(f) Buscar todos los archivos en los que su nombre contiene la cadena iso*
+Comando: find -> USO -> find . -name "cadena" -> parametros: ".": Indica el directorio actual. Puedes reemplazarlo con una ruta específica si deseas buscar en otro directorio."-name": Busca archivos que coincidan con el patrón especificado.
+
+(g) Informar la cantidad de espacio libre en disco
+Comando: df -> parametros: "-h": Muestra el uso del disco en un formato legible por humanos (KB, MB, GB). "-T": Muestra el tipo de sistema de archivos.
+
+(h) Verificar los usuarios conectados al sistema
+Comando: who -> parametros: "-u": Muestra los usuarios conectados junto con la información sobre inactividad. "-q": Muestra sólo la lista de usuarios conectados.
+
+i) Acceder a el archivo iso2017-1 e ingresar Nombre y Apellido
+1) -> Comando: cat -> parametros "> archivo.txt" (Esto creara un archivo llamado archivo.txt, si ya existe, lo pisara con uno nuevo y vacio y dejara que escribas el archivo). ">> archivo.txt" (Esto abrira un el archivo.txt para escribir en el, sino existe, lo creara). "archivo.txt" (Esto mostrara el contenido del archivo en consola).
+2) -> Comando: echo -> parametros "cadena de texto > archivo.txt": Creara el archivo "archivo.txt" con el texto "cadena e texto" (Si existia, se pisara y se dejara el nuevo archivo). "cadena de texto >> archivo.txt" (similar pero en vez de pisar el archivo, lo abre y lo modifica).
+
+(j) Mostrar en pantalla las últimas líneas de un archivo
+Comando: tail ISO2017 -> parametros: "-n X": Muestra las últimas X líneas del archivo. Por ejemplo, -n 10 muestra las últimas 10 líneas. "-f": Muestra las líneas en tiempo real a medida que el archivo se actualiza (útil para archivos de registro).
+
+11) (a) shutdown
+Funcionamiento: Apaga o reinicia el sistema de manera segura.
+
+Parámetros importantes:
+
+-h: Apaga el sistema.
+-r: Reinicia el sistema.
+-P: Apaga el sistema (equivalente a -h).
+-H: Apaga el sistema y lo coloca en estado de suspensión (sólo si soporta esta opción).
++m: Apaga el sistema después de m minutos.
+now: Apaga el sistema de inmediato.
+
+
+Claro, aquí tienes una breve explicación del funcionamiento y los parámetros más importantes de cada uno de estos comandos en Linux:
+
+(a) shutdown
+Funcionamiento: Apaga o reinicia el sistema de manera segura.
+
+Parámetros importantes:
+
+-h: Apaga el sistema.
+-r: Reinicia el sistema.
+-P: Apaga el sistema (equivalente a -h).
+-H: Apaga el sistema y lo coloca en estado de suspensión (sólo si soporta esta opción).
++m: Apaga el sistema después de m minutos.
+now: Apaga el sistema de inmediato.
+Ejemplo:
+
+bash
+Copiar código
+shutdown -r +10 "El sistema se reiniciará en 10 minutos."
+(b) reboot
+Funcionamiento: Reinicia el sistema inmediatamente.
+
+Parámetros importantes:
+
+No tiene parámetros adicionales para el uso básico. Simplemente reinicia el sistema.
+
+(c) halt
+Funcionamiento: Detiene todos los procesos y apaga el sistema inmediatamente.
+
+Parámetros importantes:
+
+-p: Apaga el sistema (equivalente a halt).
+--no-wall: No envía mensajes a los usuarios conectados.
+
+(d) locate
+Funcionamiento: Busca archivos en el sistema utilizando una base de datos preindexada.
+
+Parámetros importantes:
+
+-i: Realiza una búsqueda sin distinguir entre mayúsculas y minúsculas.
+-c: Muestra el número de archivos que coinciden con la búsqueda.
+-r: Realiza una búsqueda usando expresiones regulares.
+
+(d) locate
+Funcionamiento: Busca archivos en el sistema utilizando una base de datos preindexada.
+
+Parámetros importantes:
+
+-i: Realiza una búsqueda sin distinguir entre mayúsculas y minúsculas.
+-c: Muestra el número de archivos que coinciden con la búsqueda.
+-r: Realiza una búsqueda usando expresiones regulares.
+
+(e) uname
+Funcionamiento: Muestra información sobre el sistema operativo y el kernel.
+
+Parámetros importantes:
+
+-a: Muestra toda la información (nombre del kernel, nombre del nodo, versión del kernel, etc.).
+-r: Muestra la versión del kernel.
+-s: Muestra el nombre del sistema operativo.
+
+(f) dmesg
+Funcionamiento: Muestra mensajes del buffer de anillo del kernel, que contienen información de diagnóstico y de arranque.
+
+Parámetros importantes:
+
+-T: Muestra las fechas y horas legibles en los mensajes.
+-n LEVEL: Muestra mensajes de un nivel de severidad específico.
+
+(g) lspci
+Funcionamiento: Muestra información sobre los dispositivos PCI en el sistema.
+
+Parámetros importantes:
+
+-v: Muestra información detallada.
+-vv: Muestra información aún más detallada.
+-nn: Muestra el identificador de proveedor y de dispositivo.
+
+(h) at
+Funcionamiento: Programa la ejecución de comandos o scripts en un momento específico en el futuro.
+
+Parámetros importantes:
+
+now + m minutes: Programa la tarea para dentro de m minutos.
+HH:MM YYYY-MM-DD: Programa la tarea para una hora y fecha específica.
+
+(i) netstat
+Funcionamiento: Muestra información sobre conexiones de red, tablas de enrutamiento, estadísticas de interfaz, etc.
+
+Parámetros importantes:
+
+-a: Muestra todas las conexiones y puertos de escucha.
+-t: Muestra conexiones TCP.
+-u: Muestra conexiones UDP.
+-r: Muestra la tabla de enrutamiento.
+
+(j) mount
+Funcionamiento: Monta un sistema de archivos en un punto de montaje.
+
+Parámetros importantes:
+
+-t tipo: Especifica el tipo de sistema de archivos (ej. ext4, ntfs).
+-o opciones: Especifica opciones de montaje (ej. rw, ro, noexec).
+
+(k) umount
+Funcionamiento: Desmonta un sistema de archivos previamente montado.
+
+Parámetros importantes:
+
+No tiene parámetros adicionales para el uso básico. Se proporciona el punto de montaje o dispositivo.
+
+(l) head
+Funcionamiento: Muestra las primeras líneas de un archivo.
+
+Parámetros importantes:
+
+-n X: Muestra las primeras X líneas del archivo (por defecto muestra las primeras 10 líneas).
+
+(m) losetup
+Funcionamiento: Configura y gestiona dispositivos de bucle (loop devices), que permiten montar archivos como si fueran dispositivos de bloque.
+
+Parámetros importantes:
+
+-f: Encuentra el primer dispositivo de bucle libre.
+-o offset: Especifica un offset en el archivo de bucle.
+-d: Desmonta un dispositivo de bucle.
+
+(n) write
+Funcionamiento: Permite enviar mensajes a otro usuario en el mismo sistema.
+
+Parámetros importantes:
+
+usuario: Especifica el nombre de usuario del destinatario.
+
+(ñ) mkfs
+Funcionamiento: Crea un nuevo sistema de archivos en un dispositivo o partición.
+
+Parámetros importantes:
+
+-t tipo: Especifica el tipo de sistema de archivos (ej. ext4, vfat).
+-n etiqueta: Asigna una etiqueta al sistema de archivos.
+
+(o) fdisk (con cuidado)
+Funcionamiento: Herramienta para manipular particiones de disco. Es útil para crear, eliminar, cambiar y administrar particiones.
+
+Parámetros importantes:
+
+-l: Lista las particiones existentes en los discos.
+-t tipo: Cambia el tipo de partición.
+-n: Crea una nueva partición.
+-d: Elimina una partición.

@@ -1,0 +1,31 @@
+Actores:
+	- Usuario no registrado
+	- Usuario registrado
+
+Historias de Usuario:
+	- Registrar Usuario
+	- Reservar cancha
+
+==> ID: Registrar Usuario
+Titulo: Como usuario no registrado quiero registrarme para usar el sistema.
+Reglas de negocio: 
+	- El DNI es unico por usuario.
+
+Criterios de aceptacion:
+-Escenario 1: Registro exitoso
+	Dado el usuario no registrado con DNI 123456789
+	Cuando el usuario no registrado ingresa "Registrar Usuario", DNI 123456789, nombre Juan Cruz, apellido Pissaco, edad 24 anios, mail juan@gmail.com, direccion 131 420, y "Nadie" en el campo "Recomendado por" 
+	Entonces el sistema registra los datos del usuario y envia una contrasenia aleatoria al email juan@gmail.com
+
+-Escenario 2: Registro recomendado exitoso
+	Dado el usuario no registrado con DNI 123456789 y el DNI 7777777 el cual esta registrado
+	Cuando el usuario no registrado ingresa "Registrar Usuario", DNI 123456789, nombre Juan Cruz, apellido Pissaco, edad 24 anios, mail juan@gmail.com, direccion 131 420, y el DNI "7777777" en el campo "Recomendado por" 
+	Entonces el sistema registra los datos del usuario, envia una contrasenia aleatoria al email juan@gmail.com y registra la adicion de 10 puntos para la cuenta asociada al DNI "7777777". Si la cuenta "7777777" alcanza los 100 puntos, se resetea a 0 y se envia un cupon por una reserva gratis al mail asociado a la cuenta con DNI "7777777"
+
+=======>/////DUDA//// ^^^
+
+-Escenario 3: Registro fallido por repeticion de DNI
+	Dado el usuario REGISTRADO con DNI 123456789
+	Cuando el usuario REGISTRADO ingresa "Registrar Usuario", DNI 123456789, nombre Juan Cruz, apellido Pissaco, edad 24 anios, mail juan@gmail.com, direccion 131 420, y "Nadie" en el campo "Recomendado por"
+	Entonces el sistema muestra "error: Usuario ya registrado"
+	

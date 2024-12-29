@@ -1,0 +1,2 @@
+Ejercicio 1.5
+Explicacion practica: Pag 9 ("Contar el Nº de clientes que tienen cuentas de cada sucursal") -> Pide la cantidad de clientes que tengan al menos una cuenta en cada sucursal, pero la explicacion resuelve: Contar (para cada sucursal) los clientes que tengan al menos una cuenta en esa sucursal.
